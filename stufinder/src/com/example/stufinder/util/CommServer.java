@@ -20,6 +20,7 @@ import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.accounts.AccountManager;
 import android.graphics.Bitmap;
 import android.util.Base64;
 import android.util.Log;

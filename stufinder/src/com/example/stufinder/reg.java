@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.stufinder.util.CommServer;
+import com.example.stufinder.util.getGoogleAccount;
 
 
 
@@ -190,6 +191,7 @@ public class reg extends Activity implements View.OnClickListener{
 					comm.setParam("date", date);
 					comm.setParam("lati", Double.toString(lati));
 					comm.setParam("longi", Double.toString(longi));
+					comm.setParam("gaccount", getGoogleAccount.getAccount(this));
 					
 					dialog = new ProgressDialog(reg.this);
 					dialog.setTitle("");

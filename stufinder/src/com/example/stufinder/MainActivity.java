@@ -5,8 +5,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.stufinder.util.getGoogleAccount;
+
 import android.os.Bundle;
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.content.Context;
@@ -25,14 +30,11 @@ import android.widget.Spinner;
 
 public class MainActivity extends Activity implements View.OnClickListener 
 {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		
 		//화면에버튼을 설정
 		Button fpbtn = (Button)findViewById(R.id.fp);
 		fpbtn.setOnClickListener(this);
@@ -61,6 +63,10 @@ public class MainActivity extends Activity implements View.OnClickListener
 			Intent intent = new Intent(this, sMap.class);
 			int selectp = 1;
 			intent.putExtra("selectp", selectp);
+			startActivity(intent);
+		}
+		else if(v.getId() == R.id.fp){
+			Intent intent = new Intent(this, dMap.class);
 			startActivity(intent);
 		}
 		else{
