@@ -194,17 +194,11 @@ public class reg extends Activity implements View.OnClickListener{
 					
 
 
-
-
-
-
 //	    	Intent intent = new Intent(this, dMap.class);
 //			startActivity(intent);
 		
-			
-			
 		}
-		
+			
 	
 //액티비티로 복귀하였을때 이미지 세팅ㅋㅋㅋㅋ
 	protected void onActivityResult(int requestCode, int resultCode, Intent imageData){

@@ -17,11 +17,11 @@ import android.view.View;
 import android.widget.Button;
 
 public class sMap extends FragmentActivity implements View.OnClickListener {
-	
-	Double lati = null;
-	Double longi = null;
-	GoogleMap mGoogleMap;
 	LatLng loc = new LatLng(36.949437, 127.908089);
+	Double lati = loc.latitude;
+	Double longi = loc.longitude;
+	GoogleMap mGoogleMap;
+	
 	CameraPosition cp = new CameraPosition.Builder().target((loc)).zoom(17).build();
 	MarkerOptions marker = new MarkerOptions().position(loc);
 	
@@ -51,7 +51,7 @@ public class sMap extends FragmentActivity implements View.OnClickListener {
 	    		//마커의 위경도 받아오기
 	    	
 	    		loc = markerOptions.getPosition();
-//	    		System.out.println(loc);
+	    		System.out.println(loc);
 	    		lati = loc.latitude;
 	    		longi = loc.longitude;
 //	    		System.out.println(lati);
@@ -75,6 +75,7 @@ public class sMap extends FragmentActivity implements View.OnClickListener {
 		
 		Intent intent = new Intent(this, reg.class);
 		intent.putExtra("selectp", selectp);
+		System.out.println(lati);
 		intent.putExtra("lati", lati);
 		intent.putExtra("longi", longi);
 		startActivity(intent); 
