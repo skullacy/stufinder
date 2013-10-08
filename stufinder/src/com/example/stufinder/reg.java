@@ -159,13 +159,13 @@ public class reg extends Activity implements View.OnClickListener{
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			
+			Intent intent = new Intent(this, dMap.class);
+			startActivity(intent);
 		}
 		
 		
 		
-//    	Intent intent = new Intent(this, dMap.class);
-//		startActivity(intent);
+    	
 	
 //액티비티로 복귀하였을때 이미지 세팅ㅋㅋㅋㅋ
 	protected void onActivityResult(int requestCode, int resultCode, Intent imageData){

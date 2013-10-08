@@ -32,6 +32,7 @@
         <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyAL-2LlcC0schZdqnXBWv1Spm6NgwBwkJc"/>
         <activity android:name="sMap"></activity>
         <activity android:name="reg"></activity>
+        <activity android:name="dMap"></activity>
     </application>
 
 </manifest>
