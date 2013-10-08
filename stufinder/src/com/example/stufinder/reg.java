@@ -2,10 +2,16 @@ package com.example.stufinder;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLEncoder;
 
 import java.util.Calendar;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.example.stufinder.util.CommServer;
 
 
 
@@ -13,6 +19,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -159,13 +166,45 @@ public class reg extends Activity implements View.OnClickListener{
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+					Intent gps = getIntent();
+					
+					String pos = posEdit.getText().toString();
+					String phone = phoneEdit.getText().toString();
+					String date = PickDate.getText().toString();
+					String info = infoEdit.getText().toString();
+					String category = writep.getText().toString();
+
+					Double lati = gps.getExtras().getDouble("lati");
+					Double longi = gps.getExtras().getDouble("longi");
+					String lgselect = gps.getExtras().get("selectp").toString();
+					
+					Log.e("aaaa", "aaaa");
+					
+					CommServer comm = new CommServer();
+					comm.setParam("act", "procStufinderInsertData");
+					comm.setParam("pos", pos);
+					comm.setParam("phone", phone);
+					comm.setParam("lgselect", lgselect);
+					comm.setParam("info", info);
+					comm.setParam("date", date);
+					comm.setParam("lati", Double.toString(lati));
+					comm.setParam("longi", Double.toString(longi));
+					
+					new ServerCommTask().execute(comm);
+					
+
+
+
+
+
+
+//	    	Intent intent = new Intent(this, dMap.class);
+//			startActivity(intent);
+		
+			
 			
 		}
 		
-		
-		
-//    	Intent intent = new Intent(this, dMap.class);
-//		startActivity(intent);
 	
 //액티비티로 복귀하였을때 이미지 세팅ㅋㅋㅋㅋ
 	protected void onActivityResult(int requestCode, int resultCode, Intent imageData){
@@ -192,5 +231,25 @@ public class reg extends Activity implements View.OnClickListener{
 		
 		}
 		
+	}
+	
+	private class ServerCommTask extends AsyncTask<CommServer, Void, String> {
+		protected String doInBackground(CommServer... comm) {
+			String data = null;
+			Log.e("1111", "1111");
+			try {
+				data = comm[0].getData();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Log.e("2222", data);
+			
+			return data;
+		}
+		
+		protected void onPostExecute(String result) {
+				Log.e("comm result", result);
+		}
 	}
 }
