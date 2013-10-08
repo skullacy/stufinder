@@ -52,15 +52,15 @@ public class MainActivity extends Activity implements View.OnClickListener
 		if(v.getId() == R.id.findp)
 		{
 			Intent intent = new Intent(this, sMap.class);
-			int selectp = 1;
-//			intent.putExtra("selectp", selectp);
+			int selectp = 0;
+			intent.putExtra("selectp", selectp);
 			startActivity(intent);
 		}
 		else if(v.getId() == R.id.lostp)
 		{
 			Intent intent = new Intent(this, sMap.class);
 			int selectp = 1;
-//			intent.putExtra("selectp", selectp);
+			intent.putExtra("selectp", selectp);
 			startActivity(intent);
 		}
 		else{

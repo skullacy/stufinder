@@ -6,29 +6,10 @@
     
     >
     
-    <TextView 
-        android:id="@+id/regt"
-        android:layout_width="wrap_content"
-        android:layout_height="85px"
-        android:layout_marginBottom="10px"
-        android:text="물건정보등록하기"
-        android:textColor="#232123"
-        android:textSize="40px"
-        android:padding="20px"
-    />
-    <TextView
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_height="3px"
-        android:background="#232123"
-        android:layout_below="@id/regt"
-        />
     <ScrollView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ebdee9"
-        android:layout_below="@id/line"
-       
         >
         <RelativeLayout
             android:layout_width="match_parent"
@@ -44,6 +25,23 @@
 	            android:layout_marginBottom="5dp"
 	            
 	        />
+		    <ImageView 
+		        android:id="@+id/imageView"
+		        android:layout_width="200dp"
+		        android:layout_height="200dp"
+		        android:layout_marginLeft="0dp"
+		        android:layout_below="@id/writep"
+		        >
+	  	    </ImageView>
+		    <Button
+		        android:id="@+id/photoUpdate"
+		        android:layout_width="200dp"
+		        android:layout_height="30dp"
+		       	android:layout_alignBottom="@id/imageView"
+		       	android:background="#55000000"
+		       	android:text="button"
+		       	android:textSize="10dp"
+		       	android:textColor="#fff"/>
 	        <TextView 
 	            android:id="@+id/posi"
 	            android:layout_width="wrap_content"
@@ -51,7 +49,7 @@
 	            android:text="위   치"
 	            android:textColor="#232123"
 	            android:textSize="20sp"
-	            android:layout_below="@id/writep"
+	            android:layout_below="@id/photoUpdate"
             />
 	        <EditText 
 	            android:id="@+id/post"
@@ -60,7 +58,7 @@
 	            android:singleLine="true"
 	            android:hint="물건을 잃어버린(습득)한 위치"
 	            android:layout_toRightOf="@id/posi"
-	            android:layout_below="@id/writep"
+	            android:layout_below="@id/photoUpdate"
 	            />
 	        <TextView 
            		android:id="@+id/phone"
@@ -106,7 +104,7 @@
 		        android:layout_below="@id/date"
 				/>
 		   	  
-		   	  
+		  
 	         <TextView 
            		android:id="@+id/info"
            		android:layout_width="wrap_content"
