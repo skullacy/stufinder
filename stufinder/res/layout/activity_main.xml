@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+  
+   <Button
+        android:id="@+id/findp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="찾은물건 등록"
+        android:padding="10dp"
+        android:clickable="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        
+        />
+   <Button
+	     android:id="@+id/lostp"
+	     android:layout_width="wrap_content"
+	     android:layout_height="50dp"
+	     android:text="잃어버린물건 등록"
+	     android:padding="10dp"
+	     android:clickable="true"
+	     android:layout_centerHorizontal="true"
+	     android:layout_below="@id/findp"
+	     />
+  <Button
+       android:id="@+id/fp"
+       android:layout_width="wrap_content"
+       android:layout_height="50dp"
+       android:text="등록된물건보기"
+       android:padding="10dp"
+       android:clickable="true"
+       android:layout_centerHorizontal="true"
+       android:layout_below="@id/lostp"
+       />  
+
+	 
+</RelativeLayout>

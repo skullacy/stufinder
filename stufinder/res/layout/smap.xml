@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <fragment
+     android:id="@+id/map"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:name="com.google.android.gms.maps.SupportMapFragment"
+    
+    />
+    <Button
+        android:id="@+id/locasave"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="#77000000"
+        android:textColor="#ffffff"
+        android:text="물건위치등록완료"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:clickable="true"
+        
+        />    
+
+</RelativeLayout>

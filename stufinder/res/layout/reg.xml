@@ -1,0 +1,146 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    
+    >
+    
+    <TextView 
+        android:id="@+id/regt"
+        android:layout_width="wrap_content"
+        android:layout_height="85px"
+        android:layout_marginBottom="10px"
+        android:text="물건정보등록하기"
+        android:textColor="#232123"
+        android:textSize="40px"
+        android:padding="20px"
+    />
+    <TextView
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="#232123"
+        android:layout_below="@id/regt"
+        />
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ebdee9"
+        android:layout_below="@id/line"
+       
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+	        <EditText
+	            android:id="@+id/writep"
+	            android:hint="등록할물건이 무엇입니까?"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="5dp"
+	            android:layout_marginBottom="5dp"
+	            
+	        />
+	        <TextView 
+	            android:id="@+id/posi"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="위   치"
+	            android:textColor="#232123"
+	            android:textSize="20sp"
+	            android:layout_below="@id/writep"
+            />
+	        <EditText 
+	            android:id="@+id/post"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:singleLine="true"
+	            android:hint="물건을 잃어버린(습득)한 위치"
+	            android:layout_toRightOf="@id/posi"
+	            android:layout_below="@id/writep"
+	            />
+	        <TextView 
+           		android:id="@+id/phone"
+           		android:layout_width="wrap_content"
+           		android:layout_height="wrap_content"
+           		android:layout_marginTop="21dp"
+            	android:text="Phone"
+	            android:textColor="#232123"
+	            android:textSize="20sp"
+	            android:layout_below="@id/posi"
+            />
+	        <EditText 
+	            android:id="@+id/phonet"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:singleLine="true"
+	            android:hint="ex)01011112222"
+	            android:inputType="number"
+	            android:layout_toRightOf="@id/phone"
+	            android:layout_below="@id/post"
+	            />
+	           <TextView
+		        android:id="@+id/date"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="20sp"
+		        android:textColor="#232123"
+		        android:layout_marginLeft="45dp"
+		        android:layout_marginRight="35dp"
+		        android:layout_marginTop="20dp"
+		        android:text="물건을 습득한/잃어버린 날"
+		        android:layout_below="@id/phonet" 
+		        />
+		       
+		
+		   	  <Button
+		        android:id="@+id/dateb"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="35dp"
+		        android:layout_marginRight="35dp"
+		        android:layout_marginTop="10dp"
+		        android:layout_below="@id/date"
+				/>
+		   	  
+		   	  
+	         <TextView 
+           		android:id="@+id/info"
+           		android:layout_width="wrap_content"
+           		android:layout_height="wrap_content"
+           		android:layout_marginTop="21dp"
+            	android:text="물건에 대한 자세한 정보를 적으세요"
+            	android:layout_centerHorizontal="true"
+	            android:textColor="#232123"
+	            android:textSize="20sp"
+	            android:layout_below="@id/dateb"
+            	/>
+	          <EditText 
+	            android:id="@+id/infot"
+	            android:layout_width="300dp"
+	            android:layout_height="200dp"
+	            android:hint="주인을 잃은 물건에대한 자세한 정보를 입력하세요"
+	            android:layout_centerHorizontal="true"
+	            android:layout_below="@id/info"
+	            />
+	          
+	          <Button
+	              android:id="@+id/saved"
+	              android:layout_width="wrap_content"
+	              android:layout_height="wrap_content"
+	              android:layout_below="@id/infot"
+	              android:text="저장 및 위치설정하기"
+	              android:layout_centerHorizontal="true"
+	              />
+	        
+       </RelativeLayout>
+      
+       
+    </ScrollView>
+    
+ 
+
+</RelativeLayout>
