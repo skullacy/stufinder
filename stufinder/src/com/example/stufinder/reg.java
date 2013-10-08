@@ -3,8 +3,6 @@ package com.example.stufinder;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.net.URLEncoder;
 
 import java.util.Calendar;
 
@@ -16,8 +14,10 @@ import com.example.stufinder.util.CommServer;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -37,7 +37,6 @@ import android.content.Intent;
 
 
 public class reg extends Activity implements View.OnClickListener{
-	private final String SERVER_ADDRESS = "http://skullacytest.cafe24.com/xe";
 	
 	private static final String TEMP_PHOTO_FILE = "temp.jpg";
 	private static final int REQ_CODE_PICK_IMAGE = 0;
@@ -55,6 +54,8 @@ public class reg extends Activity implements View.OnClickListener{
 	private int         mDay;    
 	static final int DATE_DIALOG_ID = 0;
 	
+	ProgressDialog dialog;
+	AlertDialog.Builder alertDialog;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -190,12 +191,19 @@ public class reg extends Activity implements View.OnClickListener{
 					comm.setParam("lati", Double.toString(lati));
 					comm.setParam("longi", Double.toString(longi));
 					
+					dialog = new ProgressDialog(reg.this);
+					dialog.setTitle("");
+					dialog.setMessage("서버에 등록중입니다.");
+					dialog.show();
+					
 					new ServerCommTask().execute(comm);
+					
+					
+					
 					
 
 
-//	    	Intent intent = new Intent(this, dMap.class);
-//			startActivity(intent);
+	    	
 		
 		}
 			
@@ -243,7 +251,31 @@ public class reg extends Activity implements View.OnClickListener{
 		}
 		
 		protected void onPostExecute(String result) {
-				Log.e("comm result", result);
+				JSONObject jsonobj;
+				dialog.dismiss();
+				try {
+					jsonobj = new JSONObject(result.toString());
+					if(jsonobj.getInt("error") == 0)
+					{
+						Log.e("insert Account", "success regist");
+						Intent intent = new Intent(reg.this, dMap.class);
+						startActivity(intent);
+						finish();
+						overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+					}
+					else
+					{
+						alertDialog = new AlertDialog.Builder(reg.this);
+						alertDialog.setTitle("").setMessage(jsonobj.getString("message")).setNeutralButton("확인", null).show();
+					}
+					
+					
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
 		}
 	}
 }
