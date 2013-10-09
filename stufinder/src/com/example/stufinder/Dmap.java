@@ -1,77 +1,48 @@
 package com.example.stufinder;
 
-import java.io.UnsupportedEncodingException;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.example.stufinder.util.CommServer;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
+import android.support.v4.app.Fragment;
 
-public class Dmap extends FragmentActivity {
+public class Dmap extends SlidingFragmentActivity {
 	
-	GoogleMap mGoogleMap;
-	
-	LatLng loc = new LatLng(36.949437, 127.908089);
-	CameraPosition cp = new CameraPosition.Builder().target((loc)).zoom(17).build();
-	
-	Double lati = null;
-	Double longi = null;
+	private Fragment dMapFragment;
 
-	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.activity_dmap);
-	    // TODO Auto-generated method stub
-	    
-	    mGoogleMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-	    mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cp));
-	   
-		mGoogleMap.setOnMarkerClickListener(new OnMarkerClickListener(){
-			@Override
-			public boolean onMarkerClick(Marker marker){
-				System.out.println(marker.getPosition());
-				
-					new AlertDialog.Builder(Dmap.this)
-	                .setTitle("Ahmedabad")
-	                .setPositiveButton("OK",
-	                        new DialogInterface.OnClickListener() {
-
-	                            @Override
-	                            public void onClick(
-	                                    DialogInterface dialog,
-	                                    int which) {
-	                                // TODO Auto-generated method stub
-
-	                            }
-	                        }).show();
-			return false;
-			}
-			
-		});
-	    
-	    
-	    
+	    if (savedInstanceState != null)
+	    	dMapFragment = getSupportFragmentManager().getFragment(savedInstanceState, "dMapFragment");
+		if (dMapFragment == null)
+			dMapFragment = new DmapFragment();	
+		
+		// 상위 fragment 설정
+		setContentView(R.layout.fragment_dmap);
+		getSupportFragmentManager()
+		.beginTransaction()
+		.replace(R.id.content_frame, dMapFragment)
+		.commit();
+		
+		// 하위 fragment 설정(슬라이드메뉴 - 왼쪽)
+		setBehindContentView(R.layout.fragment_dmap_leftmenu);
+		getSupportFragmentManager()
+		.beginTransaction()
+		.replace(R.id.menu_frame, new DmapFragmentLeftSlide())
+		.commit();
+		
+		//슬라이드메뉴 연결
+		SlidingMenu sm = getSlidingMenu();
+ 		sm.setShadowWidthRes(R.dimen.shadow_width);
+ 		sm.setShadowDrawable(R.drawable.shadow);
+ 		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+ 		sm.setFadeDegree(0.35f);
+ 		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		
 		
 	}
+	
 	
 
 }
