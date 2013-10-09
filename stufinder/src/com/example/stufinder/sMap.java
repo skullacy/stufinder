@@ -3,10 +3,12 @@ package com.example.stufinder;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.app.Activity;
@@ -16,7 +18,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
 
-public class Smap extends FragmentActivity implements View.OnClickListener {
+public class sMap extends FragmentActivity implements View.OnClickListener {
 	LatLng loc = new LatLng(36.949437, 127.908089);
 	Double lati = loc.latitude;
 	Double longi = loc.longitude;
@@ -29,7 +31,7 @@ public class Smap extends FragmentActivity implements View.OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.activity_smap);
+	    setContentView(R.layout.smap);
 	    // TODO Auto-generated method stub
 	    
 	    mGoogleMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
@@ -57,8 +59,10 @@ public class Smap extends FragmentActivity implements View.OnClickListener {
 //	    		System.out.println(lati);
 	    		
 	    		//마커 위경도 받아오기 종료
+	    	
 	    	}
 	    });
+	
 	  //cray ended 클릭했을때 마커등록과 화면 이동  종료
 	    
 	    
@@ -73,7 +77,7 @@ public class Smap extends FragmentActivity implements View.OnClickListener {
 		Intent sp = getIntent();
 		int selectp = (Integer)sp.getExtras().get("selectp");
 		
-		Intent intent = new Intent(this, Reg.class);
+		Intent intent = new Intent(this, reg.class);
 		intent.putExtra("selectp", selectp);
 		System.out.println(lati);
 		intent.putExtra("lati", lati);
