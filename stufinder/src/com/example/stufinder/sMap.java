@@ -3,10 +3,12 @@ package com.example.stufinder;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.app.Activity;
@@ -57,8 +59,10 @@ public class sMap extends FragmentActivity implements View.OnClickListener {
 //	    		System.out.println(lati);
 	    		
 	    		//마커 위경도 받아오기 종료
+	    	
 	    	}
 	    });
+	
 	  //cray ended 클릭했을때 마커등록과 화면 이동  종료
 	    
 	    
