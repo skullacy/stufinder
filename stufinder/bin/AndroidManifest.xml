@@ -30,17 +30,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyAX1yWIk4hQJNDQg4uRja2Px74PKF7wt40"/>
         <activity android:name="Smap"></activity>
         <activity android:name="Reg"></activity>
         <activity android:name="Dmap"></activity>
-=======
-        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyAL-2LlcC0schZdqnXBWv1Spm6NgwBwkJc"/>
-        <activity android:name="sMap"></activity>
-        <activity android:name="reg"></activity>
-        <activity android:name="dMap"></activity>
->>>>>>> refs/remotes/origin/master
     </application>
 
 </manifest>

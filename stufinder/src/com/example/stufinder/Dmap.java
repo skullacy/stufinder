@@ -24,7 +24,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
-public class dMap extends FragmentActivity {
+public class Dmap extends FragmentActivity {
 	
 	GoogleMap mGoogleMap;
 	
@@ -38,7 +38,7 @@ public class dMap extends FragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.dmap);
+	    setContentView(R.layout.activity_dmap);
 	    // TODO Auto-generated method stub
 	    
 	    mGoogleMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
@@ -49,7 +49,7 @@ public class dMap extends FragmentActivity {
 			public boolean onMarkerClick(Marker marker){
 				System.out.println(marker.getPosition());
 				
-					new AlertDialog.Builder(dMap.this)
+					new AlertDialog.Builder(Dmap.this)
 	                .setTitle("Ahmedabad")
 	                .setPositiveButton("OK",
 	                        new DialogInterface.OnClickListener() {
@@ -69,61 +69,9 @@ public class dMap extends FragmentActivity {
 	    
 	    
 	    
-	    CommServer comm = new CommServer();
-		comm.setParam("act", "dispStufinderStuffList");
-		
-		new ServerCommTask().execute(comm);
 		
 		
 	}
 	
-	private class ServerCommTask extends AsyncTask<CommServer, Void, String> {
-		protected String doInBackground(CommServer... comm) {
-			String data = null;
-			try {
-				data = comm[0].getData();
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			Log.e("2222", data);
-			
-			return data;
-		}
-		
-		protected void onPostExecute(String result) {
-				JSONArray jsonarr = null;
-				try {
-					jsonarr = new JSONArray(result.toString());
-					for(int i=0; i<jsonarr.length(); i++){
-						JSONObject jsonobj = jsonarr.getJSONObject(i);
-						lati = jsonobj.getDouble("lati");
-						longi = jsonobj.getDouble("longi");
-						LatLng loca = new LatLng(lati, longi);
-						addMarker(loca);
-						
-						
-					}
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				
-		}
-		
-		protected void addMarker(LatLng location){
-			MarkerOptions markerOptions = new MarkerOptions();
-    		markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
-    		markerOptions.position(location); 
-    		mGoogleMap.addMarker(markerOptions);
-    		
-    	
-    	
-		}
-		
-		
-		
-	}
 
 }

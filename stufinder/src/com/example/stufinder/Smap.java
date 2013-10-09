@@ -18,7 +18,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
 
-public class sMap extends FragmentActivity implements View.OnClickListener {
+public class Smap extends FragmentActivity implements View.OnClickListener {
 	LatLng loc = new LatLng(36.949437, 127.908089);
 	Double lati = loc.latitude;
 	Double longi = loc.longitude;
@@ -31,7 +31,7 @@ public class sMap extends FragmentActivity implements View.OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    setContentView(R.layout.smap);
+	    setContentView(R.layout.activity_smap);
 	    // TODO Auto-generated method stub
 	    
 	    mGoogleMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
@@ -77,7 +77,7 @@ public class sMap extends FragmentActivity implements View.OnClickListener {
 		Intent sp = getIntent();
 		int selectp = (Integer)sp.getExtras().get("selectp");
 		
-		Intent intent = new Intent(this, reg.class);
+		Intent intent = new Intent(this, Reg.class);
 		intent.putExtra("selectp", selectp);
 		System.out.println(lati);
 		intent.putExtra("lati", lati);
