@@ -1,5 +1,14 @@
 package com.example.stufinder;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -13,6 +22,8 @@ import android.widget.TextView;
 
 public class DmapFragmentLeftSlide extends ListFragment{
 	
+	SampleAdapter adapter;
+	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		Log.e("count", "oncreateview");
 		return inflater.inflate(R.layout.piece_listfragment, null);
@@ -21,11 +32,13 @@ public class DmapFragmentLeftSlide extends ListFragment{
 	public void onActivityCreated(Bundle savedInstanceState) {
 		Log.e("count", "onActivityCreated");
 		super.onActivityCreated(savedInstanceState);
-		SampleAdapter adapter = new SampleAdapter(getActivity());
-		for (int i = 0; i < 20; i++) {
-			adapter.add(new SampleItem("Sample List", android.R.drawable.ic_menu_search));
-		}
-		setListAdapter(adapter);
+		
+//		for (int i = 0; i < 20; i++) {
+//			adapter.add(new SampleItem("Sample List", android.R.drawable.ic_menu_search));
+//		}
+		adapter = new SampleAdapter(getActivity());
+		//setListAdapter(adapter);
+		
 	}
 
 	private class SampleItem {
@@ -55,6 +68,21 @@ public class DmapFragmentLeftSlide extends ListFragment{
 			return convertView;
 		}
 
+	}
+	
+	public void addStuffList(String commResult){
+		JSONArray jsonarr = null;
+		try {
+			jsonarr = new JSONArray(commResult);
+			for (int i = 0; i < jsonarr.length(); i++) {
+				JSONObject jsonobj = jsonarr.getJSONObject(i);
+				adapter.add(new SampleItem(jsonobj.getString("info").toString(), android.R.drawable.ic_menu_search));
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		setListAdapter(adapter);
 	}
 
 }

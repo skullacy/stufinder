@@ -1,11 +1,16 @@
 package com.example.stufinder.util;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,18 +25,18 @@ import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.accounts.AccountManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.util.Log;
 
 public class CommServer {
-	private static String serverUrl;
-	public static String getServerUrl() {
+	private String serverUrl;
+	public String getServerUrl() {
 		return serverUrl;
 	}
-	public static void setServerUrl(String serverUrl) {
-		CommServer.serverUrl = serverUrl;
+	public void setServerUrl(String serverUrl) {
+		this.serverUrl = serverUrl;
 	}
 
 
@@ -48,13 +53,30 @@ public class CommServer {
 		setParam("image", ba1);
 		setParam("ext", "jpg");
 	}
-
+	
 	//constructor  
 	public CommServer(){
 		params = new ArrayList<NameValuePair>();
 		if(getServerUrl() == null){
 			setServerUrl("http://skullacytest.cafe24.com");
 		}
+	}
+	
+	public Bitmap getImage() throws UnsupportedEncodingException{
+		Bitmap bitmap = null;
+		URL url;
+		try {
+			url = new URL(getServerUrl());
+			URLConnection conn = url.openConnection();
+			conn.connect();
+			BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
+			bitmap = BitmapFactory.decodeStream(bis);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return bitmap;
 	}
 
 	public String getData() throws UnsupportedEncodingException

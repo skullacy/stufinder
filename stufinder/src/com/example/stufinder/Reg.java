@@ -5,12 +5,14 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.stufinder.util.CommServer;
-import com.example.stufinder.util.getGoogleAccount;
+import com.example.stufinder.util.StufinderUtil;
 
 
 
@@ -32,8 +34,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.view.View.OnClickListener;
 
+import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.telephony.PhoneNumberUtils;
+import android.telephony.TelephonyManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.content.Context;
 import android.content.Intent;
 
 
@@ -41,7 +49,7 @@ public class Reg extends Activity implements View.OnClickListener{
 	
 	private static final String TEMP_PHOTO_FILE = "temp.jpg";
 	private static final int REQ_CODE_PICK_IMAGE = 0;
-	Bitmap selectedImage;
+	Bitmap selectedImage = null;
 	
 	private Button      PickDate;
 	EditText phoneEdit;
@@ -65,6 +73,15 @@ public class Reg extends Activity implements View.OnClickListener{
 	    
 	    writep = (EditText)findViewById(R.id.writep);
 	    phoneEdit = (EditText)findViewById(R.id.phonet);
+	    
+	    
+	    //전화번호 형식으로 자동입력 (미완성)
+	    phoneEdit.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+	    
+	    //현재 핸드폰 전화번호 자동입력
+	    TelephonyManager telManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+	    phoneEdit.setText(telManager.getLine1Number());
+	    
 	    posEdit = (EditText)findViewById(R.id.post);
 	    infoEdit = (EditText)findViewById(R.id.infot);
 	    ((Button)findViewById(R.id.saved)).setOnClickListener(this);
@@ -180,10 +197,11 @@ public class Reg extends Activity implements View.OnClickListener{
 					Double longi = gps.getExtras().getDouble("longi");
 					String lgselect = gps.getExtras().get("selectp").toString();
 					
-					Log.e("aaaa", "aaaa");
+					Log.e("onClick", "aaaa");
 					
 					CommServer comm = new CommServer();
 					comm.setParam("act", "procStufinderInsertData");
+					comm.setParam("title", category);
 					comm.setParam("pos", pos);
 					comm.setParam("phone", phone);
 					comm.setParam("lgselect", lgselect);
@@ -191,7 +209,11 @@ public class Reg extends Activity implements View.OnClickListener{
 					comm.setParam("date", date);
 					comm.setParam("lati", Double.toString(lati));
 					comm.setParam("longi", Double.toString(longi));
-					comm.setParam("gaccount", getGoogleAccount.getAccount(this));
+					comm.setParam("gaccount", StufinderUtil.getAccount(this));
+					
+					if(selectedImage != null){
+						comm.insertImage(selectedImage);
+					}
 					
 					dialog = new ProgressDialog(Reg.this);
 					dialog.setTitle("");
@@ -243,11 +265,12 @@ public class Reg extends Activity implements View.OnClickListener{
 			Log.e("1111", "1111");
 			try {
 				data = comm[0].getData();
+				Log.e("doInBackground", data);
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			Log.e("2222", data);
+			
 			
 			return data;
 		}
@@ -267,6 +290,7 @@ public class Reg extends Activity implements View.OnClickListener{
 					}
 					else
 					{
+						Log.e("1111", jsonobj.toString());
 						alertDialog = new AlertDialog.Builder(Reg.this);
 						alertDialog.setTitle("").setMessage(jsonobj.getString("message")).setNeutralButton("확인", null).show();
 					}

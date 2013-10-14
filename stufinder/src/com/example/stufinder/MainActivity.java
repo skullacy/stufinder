@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.stufinder.util.getGoogleAccount;
-
 import android.os.Bundle;
 import android.accounts.Account;
 import android.accounts.AccountManager;

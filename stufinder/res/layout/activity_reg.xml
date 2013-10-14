@@ -76,7 +76,7 @@
 	            android:layout_height="wrap_content"
 	            android:singleLine="true"
 	            android:hint="ex)01011112222"
-	            android:inputType="number"
+	            android:inputType="phone"
 	            android:layout_toRightOf="@id/phone"
 	            android:layout_below="@id/post"
 	            />
