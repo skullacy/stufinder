@@ -79,7 +79,7 @@ public final class R {
 		public static final int text = 0x7f050005;
 	}
 	public static final class layout {
-		public static final int text_bubble = 0x7f030023;
+		public static final int text_bubble = 0x7f030024;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f060015;

@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 public class DmapFragmentLeftSlide extends ListFragment{
 	
-	SampleAdapter adapter;
+	StuffListAdapter adapter;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		Log.e("count", "oncreateview");
@@ -36,34 +36,46 @@ public class DmapFragmentLeftSlide extends ListFragment{
 //		for (int i = 0; i < 20; i++) {
 //			adapter.add(new SampleItem("Sample List", android.R.drawable.ic_menu_search));
 //		}
-		adapter = new SampleAdapter(getActivity());
+		adapter = new StuffListAdapter(getActivity());
 		//setListAdapter(adapter);
 		
 	}
 
-	private class SampleItem {
-		public String tag;
-		public int iconRes;
-		public SampleItem(String tag, int iconRes) {
-			this.tag = tag; 
-			this.iconRes = iconRes;
+	private class StuffItem {
+		public String title;
+		public String pos;
+		public String date;
+		public String info;
+		
+		public StuffItem(String title, String pos, String date, String info) {
+			this.title = title;
+			this.pos = pos;
+			this.date = date;
+			this.info = info;
 		}
 	}
 
-	public class SampleAdapter extends ArrayAdapter<SampleItem> {
+	public class StuffListAdapter extends ArrayAdapter<StuffItem> {
 
-		public SampleAdapter(Context context) {
+		public StuffListAdapter(Context context) {
 			super(context, 0);
 		}
 
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
-				convertView = LayoutInflater.from(getContext()).inflate(R.layout.piece_row, null);
+				convertView = LayoutInflater.from(getContext()).inflate(R.layout.piece_row_leftslide, null);
 			}
-			ImageView icon = (ImageView) convertView.findViewById(R.id.row_icon);
-			icon.setImageResource(getItem(position).iconRes);
 			TextView title = (TextView) convertView.findViewById(R.id.row_title);
-			title.setText(getItem(position).tag);
+			title.setText(getItem(position).title);
+			
+			TextView pos = (TextView) convertView.findViewById(R.id.row_pos);
+			pos.setText(getItem(position).pos);
+			
+			TextView date = (TextView) convertView.findViewById(R.id.row_date);
+			date.setText(getItem(position).date);
+			
+			TextView info = (TextView) convertView.findViewById(R.id.row_info);
+			info.setText(getItem(position).info);
 
 			return convertView;
 		}
@@ -76,7 +88,10 @@ public class DmapFragmentLeftSlide extends ListFragment{
 			jsonarr = new JSONArray(commResult);
 			for (int i = 0; i < jsonarr.length(); i++) {
 				JSONObject jsonobj = jsonarr.getJSONObject(i);
-				adapter.add(new SampleItem(jsonobj.getString("info").toString(), android.R.drawable.ic_menu_search));
+				adapter.add(new StuffItem(jsonobj.getString("title"), 
+						jsonobj.getString("pos"), 
+						jsonobj.getString("date"), 
+						jsonobj.getString("info")));
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

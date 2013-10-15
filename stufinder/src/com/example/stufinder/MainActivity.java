@@ -1,28 +1,10 @@
 package com.example.stufinder;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import android.os.Bundle;
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.app.Activity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MotionEvent;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Bitmap.CompressFormat;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.Button;
 import android.content.Intent;
-import android.widget.Spinner;
 
 
 

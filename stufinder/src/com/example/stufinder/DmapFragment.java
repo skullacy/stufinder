@@ -107,6 +107,8 @@ public class DmapFragment extends Fragment {
 					i.putExtra("phone", markerdata.getString("phone"));
 					i.putExtra("info", markerdata.getString("info"));
 					i.putExtra("date", markerdata.getString("date"));
+					i.putExtra("stuff_srl", markerdata.getInt("stuff_srl"));
+					i.putExtra("gaccount", markerdata.getString("gaccount"));
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
