@@ -16,6 +16,7 @@ import com.example.stufinder.util.StufinderUtil;
 
 
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -70,6 +71,9 @@ public class Reg extends Activity implements View.OnClickListener{
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_reg);
+	    
+	    ActionBar actionBar = getActionBar();
+        actionBar.hide();
 	    
 	    writep = (EditText)findViewById(R.id.writep);
 	    phoneEdit = (EditText)findViewById(R.id.phonet);
