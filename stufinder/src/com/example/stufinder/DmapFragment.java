@@ -28,18 +28,14 @@ import com.google.maps.android.ui.IconGenerator;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class DmapFragment extends Fragment {
 
@@ -61,6 +57,7 @@ public class DmapFragment extends Fragment {
 		mGoogleMap = ((SupportMapFragment) getFragmentManager()
 				.findFragmentById(R.id.map)).getMap();
 		mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cp));
+		mGoogleMap.getUiSettings().setZoomControlsEnabled(isHidden());
 		//Infowindow 커스터마이징
 		mGoogleMap.setInfoWindowAdapter(new InfoWindowAdapter(){
 			@Override
@@ -100,7 +97,12 @@ public class DmapFragment extends Fragment {
 	}
 	
 	public Map<Marker, JSONObject> addMarker(String commResult) {
+		//초기화
 		JSONArray jsonarr = null;
+		allMarkersData.clear();
+		mGoogleMap.clear();
+		
+		
 		try {
 			jsonarr = new JSONArray(commResult);
 			for (int i = 0; i < jsonarr.length(); i++) {
@@ -139,6 +141,7 @@ public class DmapFragment extends Fragment {
 		try {
 			Log.e("onMarkerSelected", "1111");
 			String imagePath = allMarkersData.get(marker).getString("filepath");
+			Log.e("imagePath", imagePath);
 			CommServer comm = new CommServer();
 			comm.setServerUrl(imagePath);
 			StufinderInfowindowAdapter iwadt = new StufinderInfowindowAdapter(comm, marker);

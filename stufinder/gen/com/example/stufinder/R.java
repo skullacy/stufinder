@@ -8,6 +8,9 @@
 package com.example.stufinder;
 
 public final class R {
+    public static final class array {
+        public static final int locations=0x7f0b0000;
+    }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -1244,57 +1247,58 @@ containing a value of this type.
         public static final int abs__textButton=0x7f04001d;
         public static final int abs__title=0x7f040025;
         public static final int abs__up=0x7f04000b;
-        public static final int action_settings=0x7f04005e;
-        public static final int content_frame=0x7f040053;
+        public static final int action_settings=0x7f04005f;
+        public static final int content_frame=0x7f040054;
         public static final int content_reply=0x7f040044;
         public static final int date=0x7f040041;
-        public static final int dateb=0x7f04004e;
+        public static final int dateb=0x7f04004f;
         public static final int disableHome=0x7f040009;
         public static final int edit_query=0x7f040030;
-        public static final int findp=0x7f040046;
-        public static final int fp=0x7f040048;
+        public static final int findp=0x7f040047;
+        public static final int fp=0x7f040049;
         public static final int fullscreen=0x7f040013;
         public static final int homeAsUp=0x7f040006;
         public static final int hybrid=0x7f040018;
-        public static final int imageView=0x7f04004a;
+        public static final int imageView=0x7f04004b;
         public static final int info=0x7f040042;
-        public static final int infot=0x7f04004f;
-        public static final int item1=0x7f04005f;
-        public static final int item2=0x7f040060;
-        public static final int item3=0x7f040061;
+        public static final int infot=0x7f040050;
+        public static final int item1=0x7f040060;
+        public static final int item2=0x7f040061;
+        public static final int item3=0x7f040062;
         public static final int left=0x7f040010;
         public static final int listMode=0x7f040002;
-        public static final int locasave=0x7f040052;
-        public static final int lostp=0x7f040047;
-        public static final int map=0x7f040051;
+        public static final int locasave=0x7f040053;
+        public static final int lostp=0x7f040048;
+        public static final int map=0x7f040052;
         public static final int margin=0x7f040012;
-        public static final int menu_frame=0x7f040054;
+        public static final int menu_frame=0x7f040055;
         public static final int none=0x7f040015;
         public static final int normal=0x7f040001;
         public static final int phone=0x7f040040;
-        public static final int phonet=0x7f04004d;
-        public static final int photoUpdate=0x7f04004b;
+        public static final int phonet=0x7f04004e;
+        public static final int photoUpdate=0x7f04004c;
         public static final int pos=0x7f04003f;
-        public static final int post=0x7f04004c;
+        public static final int post=0x7f04004d;
+        public static final int progressBar1=0x7f040046;
         public static final int replyList=0x7f040045;
         public static final int right=0x7f040011;
-        public static final int row_content=0x7f04005c;
-        public static final int row_date=0x7f040058;
-        public static final int row_gaccount=0x7f04005a;
-        public static final int row_info=0x7f040059;
-        public static final int row_pos=0x7f040057;
-        public static final int row_regdate=0x7f04005b;
-        public static final int row_title=0x7f040056;
+        public static final int row_content=0x7f04005d;
+        public static final int row_date=0x7f040059;
+        public static final int row_gaccount=0x7f04005b;
+        public static final int row_info=0x7f04005a;
+        public static final int row_pos=0x7f040058;
+        public static final int row_regdate=0x7f04005c;
+        public static final int row_title=0x7f040057;
         public static final int satellite=0x7f040016;
-        public static final int saved=0x7f040050;
+        public static final int saved=0x7f040051;
         public static final int scrollView1=0x7f04003c;
-        public static final int searchView1=0x7f040055;
+        public static final int searchView1=0x7f040056;
         public static final int selected_view=0x7f040014;
         public static final int sendreply=0x7f040043;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
-        public static final int slidingmenumain=0x7f04005d;
+        public static final int slidingmenumain=0x7f04005e;
         public static final int stuffimg=0x7f04003d;
         public static final int tabMode=0x7f040003;
         public static final int terrain=0x7f040017;
@@ -1302,7 +1306,7 @@ containing a value of this type.
         public static final int title=0x7f04003e;
         public static final int useLogo=0x7f040004;
         public static final int wrap_content=0x7f040000;
-        public static final int writep=0x7f040049;
+        public static final int writep=0x7f04004a;
     }
     public static final class integer {
         public static final int abs__max_action_buttons=0x7f080000;
@@ -1332,25 +1336,26 @@ containing a value of this type.
         public static final int abs__simple_dropdown_hint=0x7f030014;
         public static final int activity_detail=0x7f030015;
         public static final int activity_dmap=0x7f030016;
-        public static final int activity_main=0x7f030017;
-        public static final int activity_reg=0x7f030018;
-        public static final int activity_smap=0x7f030019;
-        public static final int collapsible_edittext=0x7f03001a;
-        public static final int fragment_dmap=0x7f03001b;
-        public static final int fragment_dmap_leftmenu=0x7f03001c;
-        public static final int piece_infowindow=0x7f03001d;
-        public static final int piece_listfragment=0x7f03001e;
-        public static final int piece_map=0x7f03001f;
-        public static final int piece_row_leftslide=0x7f030020;
-        public static final int piece_row_reply=0x7f030021;
-        public static final int sherlock_spinner_dropdown_item=0x7f030022;
-        public static final int sherlock_spinner_item=0x7f030023;
-        public static final int slidingmenumain=0x7f030024;
-        public static final int text_bubble=0x7f030025;
+        public static final int activity_intro=0x7f030017;
+        public static final int activity_main=0x7f030018;
+        public static final int activity_reg=0x7f030019;
+        public static final int activity_smap=0x7f03001a;
+        public static final int collapsible_edittext=0x7f03001b;
+        public static final int fragment_dmap=0x7f03001c;
+        public static final int fragment_dmap_leftmenu=0x7f03001d;
+        public static final int piece_infowindow=0x7f03001e;
+        public static final int piece_listfragment=0x7f03001f;
+        public static final int piece_map=0x7f030020;
+        public static final int piece_row_leftslide=0x7f030021;
+        public static final int piece_row_reply=0x7f030022;
+        public static final int sherlock_spinner_dropdown_item=0x7f030023;
+        public static final int sherlock_spinner_item=0x7f030024;
+        public static final int slidingmenumain=0x7f030025;
+        public static final int text_bubble=0x7f030026;
     }
     public static final class menu {
-        public static final int main=0x7f0b0000;
-        public static final int mainbar=0x7f0b0001;
+        public static final int main=0x7f0c0000;
+        public static final int mainbar=0x7f0c0001;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 

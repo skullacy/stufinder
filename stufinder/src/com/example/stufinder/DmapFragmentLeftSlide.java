@@ -116,7 +116,11 @@ public class DmapFragmentLeftSlide extends ListFragment{
 	}
 	
 	public void addStuffList(Map<Marker, JSONObject> allMarkersData){
+		//√ ±‚»≠
+		adapter.clear();
 		Iterator iterator = allMarkersData.entrySet().iterator();
+		
+		
 		while (iterator.hasNext()){
 			Map.Entry mapEntry = (Map.Entry) iterator.next();
 			JSONObject jsonobj = (JSONObject) mapEntry.getValue();

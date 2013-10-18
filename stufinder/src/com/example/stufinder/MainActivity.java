@@ -1,8 +1,11 @@
 package com.example.stufinder;
 
+import com.google.android.gcm.GCMRegistrar;
+
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
