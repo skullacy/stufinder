@@ -56,7 +56,7 @@ public class DetailActivity extends Activity {
 	    gaccount = intent.getExtras().getString("gaccount");
 	    
 	    TextView TV_title = (TextView) findViewById(R.id.title);
-	    TV_title.setText(intent.getExtras().getString("title"));
+	    TV_title.setText(intent.getExtras().getString("title")); 
 	    
 	    TextView TV_pos = (TextView) findViewById(R.id.pos);
 	    TV_pos.setText(intent.getExtras().getString("pos"));
