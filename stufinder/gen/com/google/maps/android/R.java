@@ -327,7 +327,7 @@ public final class R {
 		public static final int common_signin_btn_text_normal_light = 0x7f02008c;
 		public static final int common_signin_btn_text_pressed_dark = 0x7f02008d;
 		public static final int common_signin_btn_text_pressed_light = 0x7f02008e;
-		public static final int ic_launcher = 0x7f020099;
+		public static final int ic_launcher = 0x7f02009c;
 	}
 	public static final class id {
 		public static final int abs__action_bar = 0x7f04002a;
@@ -385,7 +385,7 @@ public final class R {
 		public static final int showCustom = 0x7f040008;
 		public static final int showHome = 0x7f040005;
 		public static final int showTitle = 0x7f040007;
-		public static final int slidingmenumain = 0x7f04005e;
+		public static final int slidingmenumain = 0x7f040061;
 		public static final int tabMode = 0x7f040003;
 		public static final int terrain = 0x7f040017;
 		public static final int text = 0x7f040019;

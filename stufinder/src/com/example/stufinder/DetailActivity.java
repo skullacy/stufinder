@@ -11,6 +11,7 @@ import com.example.stufinder.util.StufinderInfowindowAdapter;
 import com.example.stufinder.util.StufinderUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -24,9 +25,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -74,6 +77,7 @@ public class DetailActivity extends Activity {
 	    CommServer imgcomm = new CommServer();
 	    imgcomm.setServerUrl(filepath);
 	    IV_stuffimg = (ImageView) findViewById(R.id.stuffimg);
+	   
 	    new getImageTask().execute(imgcomm);
 	    
 	    
@@ -234,7 +238,13 @@ public class DetailActivity extends Activity {
 		}
 
 		protected void onPostExecute(Bitmap bitmap) {
-			IV_stuffimg.setImageBitmap(bitmap);
+			WindowManager wm = (WindowManager)getSystemService(WINDOW_SERVICE);
+		    Display display = wm.getDefaultDisplay();
+		    int width = display.getWidth();
+		    System.out.println(width);
+		    Bitmap resizebitmap = Bitmap.createScaledBitmap(bitmap,width,width,true);
+			IV_stuffimg.setImageBitmap(resizebitmap);
+			
 		}
 	}
 	
