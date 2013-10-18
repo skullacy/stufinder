@@ -2,7 +2,9 @@ package com.example.stufinder;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
@@ -31,10 +33,16 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.view.ext.SatelliteMenu;
+import android.view.ext.SatelliteMenuItem;
+import android.view.ext.SatelliteMenu.SateliteClickedListener;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class DmapFragment extends Fragment {
 
@@ -45,11 +53,32 @@ public class DmapFragment extends Fragment {
 
 	private Map<Marker, JSONObject> allMarkersData = new HashMap<Marker, JSONObject>();
 	private Map<Marker, Bitmap> allInfowindowBitmap = new HashMap<Marker, Bitmap>();
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.piece_map, null);
+		
+		SatelliteMenu menu = (SatelliteMenu) v.findViewById(R.id.testmenu);
+		float distance = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 130, getResources().getDisplayMetrics());
+		menu.setSatelliteDistance((int) distance);
+		menu.setExpandDuration(500);
+		menu.setCloseItemsOnClick(false);
+		menu.setTotalSpacingDegree(60);
+		List<SatelliteMenuItem> items = new ArrayList<SatelliteMenuItem>();
+        items.add(new SatelliteMenuItem(4, R.drawable.ic_1));
+        items.add(new SatelliteMenuItem(4, R.drawable.ic_3));
+        items.add(new SatelliteMenuItem(4, R.drawable.ic_4));
+        
+        menu.addItems(items);        
+        
+        menu.setOnItemClickedListener(new SateliteClickedListener() {
+			
+			public void eventOccured(int id) {
+				Log.i("sat", "Clicked on " + id);
+			}
+		});
 		
 		//구글맵 세팅
 		mGoogleMap = ((SupportMapFragment) getFragmentManager()
@@ -76,18 +105,8 @@ public class DmapFragment extends Fragment {
 		mGoogleMap.setOnMarkerClickListener(new OnMarkerClickListener() {
 			@Override
 			public boolean onMarkerClick(Marker marker) {
-				try {
-					String imagePath = allMarkersData.get(marker).getString("filepath");
-					CommServer comm = new CommServer();
-					comm.setServerUrl(imagePath);
-					StufinderInfowindowAdapter iwadt = new StufinderInfowindowAdapter(comm, marker);
-					new getImageTask().execute(iwadt);
-					
-					
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} 
+				Log.e("onMarkerClickEvent", "1111");
+				onMarkerSelected(marker);
 				return true;
 			}
 		});
@@ -96,42 +115,14 @@ public class DmapFragment extends Fragment {
 		mGoogleMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
 			@Override
 			public void onInfoWindowClick(Marker marker) {
-				System.out.println(marker.getPosition());
-				JSONObject markerdata = allMarkersData.get(marker);
-				Intent i = new Intent(getActivity(), DetailActivity.class);
-				Log.e("markerdata", markerdata.toString());
-				try {
-					i.putExtra("title", markerdata.getString("title"));
-					i.putExtra("lgselect", markerdata.getInt("lgselect"));
-					i.putExtra("pos", markerdata.getString("pos"));
-					i.putExtra("phone", markerdata.getString("phone"));
-					i.putExtra("info", markerdata.getString("info"));
-					i.putExtra("date", markerdata.getString("date"));
-					i.putExtra("stuff_srl", markerdata.getInt("stuff_srl"));
-					i.putExtra("gaccount", markerdata.getString("gaccount"));
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				//100kb이상일 경우 bitmap객체를 보낼때 transaction 에러 발생하므로, bytearray stream객체로 변환 후 보내기.
-				Bitmap bitmap = allInfowindowBitmap.get(marker);
-				if(bitmap != null){
-					ByteArrayOutputStream stream = new ByteArrayOutputStream();
-					bitmap.compress(CompressFormat.JPEG, 100, stream);
-					byte[] bitmapstream = stream.toByteArray();
-					i.putExtra("bitmapstream", bitmapstream);
-					Log.e("intent", i.toString());
-				}
-				
-				startActivity(i);
+				changeActivityByMarker(marker);
 			}
-			
 		});
-
+		
 		return v;
 	}
-
-	public void addMarker(String commResult) {
+	
+	public Map<Marker, JSONObject> addMarker(String commResult) {
 		JSONArray jsonarr = null;
 		try {
 			jsonarr = new JSONArray(commResult);
@@ -163,6 +154,46 @@ public class DmapFragment extends Fragment {
 			e.printStackTrace();
 		}
 		
+		return allMarkersData;
+		
+	}
+	
+	public void onMarkerSelected(Marker marker){
+		try {
+			Log.e("onMarkerSelected", "1111");
+			String imagePath = allMarkersData.get(marker).getString("filepath");
+			CommServer comm = new CommServer();
+			comm.setServerUrl(imagePath);
+			StufinderInfowindowAdapter iwadt = new StufinderInfowindowAdapter(comm, marker);
+			new getImageTask().execute(iwadt);
+			
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+	
+	public void changeActivityByMarker(Marker marker){
+		JSONObject markerdata = allMarkersData.get(marker);
+		Intent i = new Intent(getActivity(), DetailActivity.class);
+		Log.e("markerdata", markerdata.toString());
+		try {
+			i.putExtra("title", markerdata.getString("title"));
+			i.putExtra("lgselect", markerdata.getInt("lgselect"));
+			i.putExtra("pos", markerdata.getString("pos"));
+			i.putExtra("phone", markerdata.getString("phone"));
+			i.putExtra("info", markerdata.getString("info"));
+			i.putExtra("date", markerdata.getString("date"));
+			i.putExtra("stuff_srl", markerdata.getInt("stuff_srl"));
+			i.putExtra("gaccount", markerdata.getString("gaccount"));
+			i.putExtra("filepath", markerdata.getString("filepath"));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		startActivity(i);
 	}
 	
 	private class getImageTask extends AsyncTask<StufinderInfowindowAdapter, Void, StufinderInfowindowAdapter> {

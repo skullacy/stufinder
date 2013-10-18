@@ -7,7 +7,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.stufinder.util.CommServer;
+import com.example.stufinder.util.StufinderInfowindowAdapter;
 import com.example.stufinder.util.StufinderUtil;
+import com.google.android.gms.maps.CameraUpdateFactory;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -38,6 +40,8 @@ public class DetailActivity extends Activity {
 	AlertDialog.Builder alertDialog;
 	ProgressDialog dialog;
 	
+	ImageView IV_stuffimg;
+	
 	ReplyAdapter replyAdapter;
 	ListView replyList;
 	TextView replyContent;
@@ -66,14 +70,12 @@ public class DetailActivity extends Activity {
 	    TextView TV_info = (TextView) findViewById(R.id.info);
 	    TV_info.setText(intent.getExtras().getString("info"));
 	    
-	    //비트맵파일 ByteArray로 수신 후 변경
-	    byte[] bitmapstream = intent.getByteArrayExtra("bitmapstream");
-	    Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapstream, 0, bitmapstream.length);
+	    String filepath = intent.getExtras().getString("filepath");
+	    CommServer imgcomm = new CommServer();
+	    imgcomm.setServerUrl(filepath);
+	    IV_stuffimg = (ImageView) findViewById(R.id.stuffimg);
+	    new getImageTask().execute(imgcomm);
 	    
-	    ImageView IV_stuffimg = (ImageView) findViewById(R.id.stuffimg);
-	    if(bitmap != null){
-	    	IV_stuffimg.setImageBitmap(bitmap);
-	    }
 	    
 	    //연락처 버튼 클릭시 추가행동 선택메뉴 나타나기
 	    BT_phone.setOnClickListener(new View.OnClickListener() {
@@ -215,6 +217,24 @@ public class DetailActivity extends Activity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	private class getImageTask extends AsyncTask<CommServer, Void, Bitmap> {
+		protected Bitmap doInBackground(CommServer... comm) {
+			Bitmap bitmap = null;
+			Log.e("doInBackground", "getImageTask");
+			try {
+				bitmap = comm[0].getImage();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return bitmap;
+		}
+
+		protected void onPostExecute(Bitmap bitmap) {
+			IV_stuffimg.setImageBitmap(bitmap);
 		}
 	}
 	
