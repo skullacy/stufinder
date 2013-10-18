@@ -43,7 +43,7 @@ public class IntroActivity extends Activity {
   		comm.setParam("pushid", regId);
   		comm.setParam("gaccount", gaccount);
   		
-  		new CheckPushTask().execute(comm);
+  		new CheckPushTask().execute(comm); 
   		
 	    
 	
