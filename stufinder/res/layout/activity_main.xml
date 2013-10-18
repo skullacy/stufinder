@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/cover"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,34 +9,33 @@
   
    <Button
         android:id="@+id/findp"
+        android:background="@drawable/findbtn"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="찾은물건 등록"
-        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="360dp"
         android:clickable="true"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginLeft="190dp"
         
         />
    <Button
 	     android:id="@+id/lostp"
+	     android:background="@drawable/lostbtn"
 	     android:layout_width="wrap_content"
-	     android:layout_height="50dp"
-	     android:text="잃어버린물건 등록"
-	     android:padding="10dp"
+	     android:layout_height="wrap_content"
+	     android:layout_marginTop="20dp"
 	     android:clickable="true"
-	     android:layout_centerHorizontal="true"
 	     android:layout_below="@id/findp"
+	     android:layout_marginLeft="190dp"
 	     />
   <Button
        android:id="@+id/fp"
+       android:background="@drawable/dmapbtn"
        android:layout_width="wrap_content"
-       android:layout_height="50dp"
-       android:text="등록된물건보기"
-       android:padding="10dp"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="20dp"
        android:clickable="true"
-       android:layout_centerHorizontal="true"
        android:layout_below="@id/lostp"
+       android:layout_marginLeft="190dp"
        />  
 
 	 

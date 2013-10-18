@@ -25,13 +25,13 @@ public final class R {
 		public static final int totalSpacingDegree = 0x7f010064;
 	}
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f020095;
-		public static final int sat_item = 0x7f020097;
-		public static final int sat_main = 0x7f020098;
+		public static final int ic_launcher = 0x7f020099;
+		public static final int sat_item = 0x7f02009e;
+		public static final int sat_main = 0x7f02009f;
 	}
 	public static final class id {
-		public static final int sat_item = 0x7f05005f;
-		public static final int sat_main = 0x7f050060;
+		public static final int sat_item = 0x7f05005e;
+		public static final int sat_main = 0x7f05005f;
 	}
 	public static final class layout {
 		public static final int sat_item_cr = 0x7f030022;

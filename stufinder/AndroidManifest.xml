@@ -33,9 +33,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyAX1yWIk4hQJNDQg4uRja2Px74PKF7wt40"/>
+        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyAL-2LlcC0schZdqnXBWv1Spm6NgwBwkJc"/>
         <activity android:name="Smap"></activity>
-        <activity android:name="Reg"></activity>
+        <activity android:name="Reg">
+            <intent-filter>
+                <action android:name="android.intent.action.REG" />
+            </intent-filter>
+        </activity>
         <activity android:name="Dmap"></activity>
         <activity android:name="DetailActivity"></activity>
     </application>
