@@ -38,9 +38,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.view.ext.SatelliteMenu;
-import android.view.ext.SatelliteMenuItem;
-import android.view.ext.SatelliteMenu.SateliteClickedListener;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -59,26 +56,6 @@ public class DmapFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.piece_map, null);
-		
-		SatelliteMenu menu = (SatelliteMenu) v.findViewById(R.id.testmenu);
-		float distance = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 130, getResources().getDisplayMetrics());
-		menu.setSatelliteDistance((int) distance);
-		menu.setExpandDuration(500);
-		menu.setCloseItemsOnClick(false);
-		menu.setTotalSpacingDegree(60);
-		List<SatelliteMenuItem> items = new ArrayList<SatelliteMenuItem>();
-        items.add(new SatelliteMenuItem(4, R.drawable.ic_1));
-        items.add(new SatelliteMenuItem(4, R.drawable.ic_3));
-        items.add(new SatelliteMenuItem(4, R.drawable.ic_4));
-        
-        menu.addItems(items);        
-        
-        menu.setOnItemClickedListener(new SateliteClickedListener() {
-			
-			public void eventOccured(int id) {
-				Log.i("sat", "Clicked on " + id);
-			}
-		});
 		
 		//±¸±Û¸Ê ¼¼ÆÃ
 		mGoogleMap = ((SupportMapFragment) getFragmentManager()
