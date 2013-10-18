@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/regback"
+   
     
     >
     
@@ -19,26 +20,26 @@
 	            android:id="@+id/writep"
 	            android:hint="등록할물건이 무엇입니까?"
 	            android:textSize="12sp"
-	            android:layout_width="235dp"
-	            android:layout_height="30dp"
-	            android:layout_marginTop="57dp"
-	            android:layout_marginLeft="100dp"
-	            android:layout_marginBottom="14dp"
-	            android:paddingLeft="5dp"
+	            android:layout_width="235dip"
+	            android:layout_height="30dip"
+	            android:layout_marginTop="57dip"
+	            android:layout_marginLeft="100dip"
+	            android:layout_marginBottom="14dip"
+	            android:paddingLeft="5dip"
 				android:background="@drawable/mj"	            
 	        />
 		    <ImageView 
 		        android:id="@+id/imageView"
-		        android:layout_width="30dp"
-		        android:layout_height="30dp"
-		        android:layout_marginLeft="100dp"
+		        android:layout_width="30dip"
+		        android:layout_height="30dip"
+		        android:layout_marginLeft="100dip"
 		        android:layout_below="@id/writep"
 		        >
 	  	    </ImageView>
 		    <Button
 		        android:id="@+id/photoUpdate"
-		        android:layout_width="150dp"
-		        android:layout_height="30dp"
+		        android:layout_width="150dip"
+		        android:layout_height="30dip"
 		       	android:background="#4d453b"
 		       	android:layout_below="@id/writep"
 		       	android:layout_toRightOf="@id/imageView"
@@ -47,66 +48,66 @@
 		       	android:textColor="#fff"/>
 	        <EditText 
 	            android:id="@+id/post"
-	            android:layout_width="215dp"
-	            android:layout_height="30dp"
+	            android:layout_width="215dip"
+	            android:layout_height="30dip"
 	            android:singleLine="true"
 	            android:textSize="12sp"
 	            android:hint="물건을 잃어버린(습득)한 위치"
 	            android:layout_below="@id/photoUpdate"
-	            android:layout_marginLeft="120dp"
-	          	android:layout_marginTop="14dp"
+	            android:layout_marginLeft="120dip"
+	          	android:layout_marginTop="14dip"
 	            android:background="@drawable/mj"
-	            android:paddingLeft="5dp"
+	            android:paddingLeft="5dip"
 	            />
 	   
 	        <EditText 
 	            android:id="@+id/phonet"
-	            android:layout_width="235dp"
-	            android:layout_height="30dp"
+	            android:layout_width="235dip"
+	            android:layout_height="30dip"
 	            android:singleLine="true"
 	            android:hint="ex)01011112222"
 	            android:inputType="phone"
 	            android:layout_toRightOf="@id/phone"
 	            android:layout_below="@id/post"
-	            android:layout_marginTop="11dp"
+	            android:layout_marginTop="11dip"
 	            android:background="@drawable/mj"
-	            android:layout_marginLeft="100dp"
-	            android:paddingLeft="5dp"
+	            android:layout_marginLeft="100dip"
+	            android:paddingLeft="5dip"
 	            />
 		       
 		
 		   	  <Button
 		        android:id="@+id/dateb"
 		        android:background="#4d453b"
-		        android:layout_width="180dp"
-		        android:layout_height="30dp"
+		        android:layout_width="180dip"
+		        android:layout_height="30dip"
 		        android:textColor="#fff"
 		        android:textSize="12sp"
-		        android:layout_marginLeft="100dp"
-		        android:layout_marginTop="11dp"
+		        android:layout_marginLeft="100dip"
+		        android:layout_marginTop="11dip"
 		        android:layout_below="@id/phonet"
 				/>
 	          <EditText 
 	            android:id="@+id/infot"
-	            android:layout_width="300dp"
-	            android:layout_height="200dp"
+	            android:layout_width="300dip"
+	            android:layout_height="200dip"
 	            android:hint="주인을 잃은 물건에대한 자세한 정보를 입력하세요"
 	            android:layout_centerHorizontal="true"
 	            android:background="@drawable/dj"
-	            android:layout_marginTop="40dp"
+	            android:layout_marginTop="40dip"
 	            android:textSize="12sp"
 	            android:layout_below="@id/dateb"
-	            android:paddingLeft="5dp"
+	            android:paddingLeft="5dip"
 	            />
 	          
 	          <Button
 	              android:id="@+id/saved"
 	              android:layout_width="wrap_content"
-	              android:layout_height="40dp"
+	              android:layout_height="40dip"
 	              android:layout_below="@id/infot"
-	              android:padding="5dp"
+	              android:padding="5dip"
 	              android:background="#924949"
-	              android:layout_marginTop="6dp"
+	              android:layout_marginTop="6dip"
 	              android:textSize="13sp"
 	              android:textColor="#fff"
 	              android:text="저장 및 위치설정하기"
