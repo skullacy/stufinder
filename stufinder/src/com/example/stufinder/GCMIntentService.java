@@ -4,6 +4,9 @@ import java.util.Iterator;
 
 import com.google.android.gcm.GCMBaseIntentService;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -32,13 +35,38 @@ public class GCMIntentService extends GCMBaseIntentService {
 	protected void onMessage(Context context, Intent intent) {
 		// TODO Auto-generated method stub
 		Bundle b = intent.getExtras();
+		String title = "Stufinder";
+		String msg = "메세지가 도착했습니다.";
+		String ticker = "Stufinder 알림";
 		
 		Iterator<String> iterator = b.keySet().iterator();
 		while(iterator.hasNext()){
 			String key = iterator.next();
 			String value = b.get(key).toString();
 			Log.e(tag, "onMessage. "+key+" : "+value);
+			
+			if(key.equals("msg")){
+				msg = value;
+			}
+			else if(key.equals("title")){
+				title = value;
+			}
 		}
+		
+		NotificationManager nm = (NotificationManager)context.getSystemService(context.NOTIFICATION_SERVICE);
+		Intent exeActivity = new Intent(context, IntroActivity.class);
+		
+		exeActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		
+		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, exeActivity, PendingIntent.FLAG_UPDATE_CURRENT);
+		
+		
+		
+		
+		Notification notification = new Notification(android.R.drawable.ic_input_add, ticker, System.currentTimeMillis());
+		
+		notification.setLatestEventInfo(context, title, msg, pendingIntent);
+		nm.notify(1234, notification);
 		
 	}
 

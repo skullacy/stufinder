@@ -5,6 +5,7 @@ import com.google.android.gcm.GCMRegistrar;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,15 @@ import android.content.Intent;
 
 public class MainActivity extends Activity implements View.OnClickListener 
 {
+	@Override
+	protected void onResume(){
+		super.onResume();
+		//Activity 이동시 Notification 삭제
+        NotificationManager nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        nm.cancel(1234);
+	}
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
