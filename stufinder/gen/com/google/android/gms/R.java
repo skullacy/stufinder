@@ -8,34 +8,34 @@ package com.google.android.gms;
 
 public final class R {
 	public static final class attr {
-		public static final int cameraBearing = 0x7f010071;
-		public static final int cameraTargetLat = 0x7f010072;
-		public static final int cameraTargetLng = 0x7f010073;
-		public static final int cameraTilt = 0x7f010074;
-		public static final int cameraZoom = 0x7f010075;
-		public static final int mapType = 0x7f010070;
-		public static final int uiCompass = 0x7f010076;
-		public static final int uiRotateGestures = 0x7f010077;
-		public static final int uiScrollGestures = 0x7f010078;
-		public static final int uiTiltGestures = 0x7f010079;
-		public static final int uiZoomControls = 0x7f01007a;
-		public static final int uiZoomGestures = 0x7f01007b;
-		public static final int useViewLifecycle = 0x7f01007c;
-		public static final int zOrderOnTop = 0x7f01007d;
+		public static final int cameraBearing = 0x7f010084;
+		public static final int cameraTargetLat = 0x7f010085;
+		public static final int cameraTargetLng = 0x7f010086;
+		public static final int cameraTilt = 0x7f010087;
+		public static final int cameraZoom = 0x7f010088;
+		public static final int mapType = 0x7f010083;
+		public static final int uiCompass = 0x7f010089;
+		public static final int uiRotateGestures = 0x7f01008a;
+		public static final int uiScrollGestures = 0x7f01008b;
+		public static final int uiTiltGestures = 0x7f01008c;
+		public static final int uiZoomControls = 0x7f01008d;
+		public static final int uiZoomGestures = 0x7f01008e;
+		public static final int useViewLifecycle = 0x7f01008f;
+		public static final int zOrderOnTop = 0x7f010090;
 	}
 	public static final class color {
-		public static final int common_action_bar_splitter = 0x7f06000f;
-		public static final int common_signin_btn_dark_text_default = 0x7f060006;
-		public static final int common_signin_btn_dark_text_disabled = 0x7f060008;
-		public static final int common_signin_btn_dark_text_focused = 0x7f060009;
-		public static final int common_signin_btn_dark_text_pressed = 0x7f060007;
-		public static final int common_signin_btn_default_background = 0x7f06000e;
-		public static final int common_signin_btn_light_text_default = 0x7f06000a;
-		public static final int common_signin_btn_light_text_disabled = 0x7f06000c;
-		public static final int common_signin_btn_light_text_focused = 0x7f06000d;
-		public static final int common_signin_btn_light_text_pressed = 0x7f06000b;
-		public static final int common_signin_btn_text_dark = 0x7f060014;
-		public static final int common_signin_btn_text_light = 0x7f060015;
+		public static final int common_action_bar_splitter = 0x7f09000f;
+		public static final int common_signin_btn_dark_text_default = 0x7f090006;
+		public static final int common_signin_btn_dark_text_disabled = 0x7f090008;
+		public static final int common_signin_btn_dark_text_focused = 0x7f090009;
+		public static final int common_signin_btn_dark_text_pressed = 0x7f090007;
+		public static final int common_signin_btn_default_background = 0x7f09000e;
+		public static final int common_signin_btn_light_text_default = 0x7f09000a;
+		public static final int common_signin_btn_light_text_disabled = 0x7f09000c;
+		public static final int common_signin_btn_light_text_focused = 0x7f09000d;
+		public static final int common_signin_btn_light_text_pressed = 0x7f09000b;
+		public static final int common_signin_btn_text_dark = 0x7f090014;
+		public static final int common_signin_btn_text_light = 0x7f090015;
 	}
 	public static final class drawable {
 		public static final int common_signin_btn_icon_dark = 0x7f020077;
@@ -64,37 +64,37 @@ public final class R {
 		public static final int common_signin_btn_text_pressed_light = 0x7f02008e;
 	}
 	public static final class id {
-		public static final int hybrid = 0x7f040018;
-		public static final int none = 0x7f040015;
-		public static final int normal = 0x7f040001;
-		public static final int satellite = 0x7f040016;
-		public static final int terrain = 0x7f040017;
+		public static final int hybrid = 0x7f050024;
+		public static final int none = 0x7f050021;
+		public static final int normal = 0x7f05000d;
+		public static final int satellite = 0x7f050022;
+		public static final int terrain = 0x7f050023;
 	}
 	public static final class string {
-		public static final int auth_client_needs_enabling_title = 0x7f09001d;
-		public static final int auth_client_needs_installation_title = 0x7f09001e;
-		public static final int auth_client_needs_update_title = 0x7f09001f;
-		public static final int auth_client_play_services_err_notification_msg = 0x7f090020;
-		public static final int auth_client_requested_by_msg = 0x7f090021;
-		public static final int auth_client_using_bad_version_title = 0x7f09001c;
-		public static final int common_google_play_services_enable_button = 0x7f090013;
-		public static final int common_google_play_services_enable_text = 0x7f090012;
-		public static final int common_google_play_services_enable_title = 0x7f090011;
-		public static final int common_google_play_services_install_button = 0x7f090010;
-		public static final int common_google_play_services_install_text_phone = 0x7f09000e;
-		public static final int common_google_play_services_install_text_tablet = 0x7f09000f;
-		public static final int common_google_play_services_install_title = 0x7f09000d;
-		public static final int common_google_play_services_unknown_issue = 0x7f090016;
-		public static final int common_google_play_services_unsupported_text = 0x7f090018;
-		public static final int common_google_play_services_unsupported_title = 0x7f090017;
-		public static final int common_google_play_services_update_button = 0x7f090019;
-		public static final int common_google_play_services_update_text = 0x7f090015;
-		public static final int common_google_play_services_update_title = 0x7f090014;
-		public static final int common_signin_button_text = 0x7f09001a;
-		public static final int common_signin_button_text_long = 0x7f09001b;
+		public static final int auth_client_needs_enabling_title = 0x7f070023;
+		public static final int auth_client_needs_installation_title = 0x7f070024;
+		public static final int auth_client_needs_update_title = 0x7f070025;
+		public static final int auth_client_play_services_err_notification_msg = 0x7f070026;
+		public static final int auth_client_requested_by_msg = 0x7f070027;
+		public static final int auth_client_using_bad_version_title = 0x7f070022;
+		public static final int common_google_play_services_enable_button = 0x7f070019;
+		public static final int common_google_play_services_enable_text = 0x7f070018;
+		public static final int common_google_play_services_enable_title = 0x7f070017;
+		public static final int common_google_play_services_install_button = 0x7f070016;
+		public static final int common_google_play_services_install_text_phone = 0x7f070014;
+		public static final int common_google_play_services_install_text_tablet = 0x7f070015;
+		public static final int common_google_play_services_install_title = 0x7f070013;
+		public static final int common_google_play_services_unknown_issue = 0x7f07001c;
+		public static final int common_google_play_services_unsupported_text = 0x7f07001e;
+		public static final int common_google_play_services_unsupported_title = 0x7f07001d;
+		public static final int common_google_play_services_update_button = 0x7f07001f;
+		public static final int common_google_play_services_update_text = 0x7f07001b;
+		public static final int common_google_play_services_update_title = 0x7f07001a;
+		public static final int common_signin_button_text = 0x7f070020;
+		public static final int common_signin_button_text_long = 0x7f070021;
 	}
 	public static final class styleable {
-		public static final int[] MapAttrs = { 0x7f010070, 0x7f010071, 0x7f010072, 0x7f010073, 0x7f010074, 0x7f010075, 0x7f010076, 0x7f010077, 0x7f010078, 0x7f010079, 0x7f01007a, 0x7f01007b, 0x7f01007c, 0x7f01007d };
+		public static final int[] MapAttrs = { 0x7f010083, 0x7f010084, 0x7f010085, 0x7f010086, 0x7f010087, 0x7f010088, 0x7f010089, 0x7f01008a, 0x7f01008b, 0x7f01008c, 0x7f01008d, 0x7f01008e, 0x7f01008f, 0x7f010090 };
 		public static final int MapAttrs_cameraBearing = 1;
 		public static final int MapAttrs_cameraTargetLat = 2;
 		public static final int MapAttrs_cameraTargetLng = 3;

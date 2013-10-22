@@ -10,6 +10,10 @@ import com.example.stufinder.util.CommServer;
 import com.example.stufinder.util.StufinderInfowindowAdapter;
 import com.example.stufinder.util.StufinderUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -34,20 +38,26 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DetailActivity extends Activity {
 	
-	public int stuff_srl;
-	public String gaccount;
-	AlertDialog.Builder alertDialog;
-	ProgressDialog dialog;
+	protected int stuff_srl;
+	protected String gaccount;
+	protected AlertDialog.Builder alertDialog;
+	protected ProgressDialog dialog;
 	
-	ImageView IV_stuffimg;
+	protected ImageView IV_stuffimg;
 	
-	ReplyAdapter replyAdapter;
-	ListView replyList;
-	TextView replyContent;
+	protected ReplyAdapter replyAdapter;
+	protected ListView replyList;
+	protected TextView replyContent;
+	
+	protected PullToRefreshScrollView mPullRefreshScrollView;
+	protected ScrollView mScrollView;
+	protected int reply_page = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -150,11 +160,31 @@ public class DetailActivity extends Activity {
 	    replyAdapter = new ReplyAdapter(this);
 	    replyList = (ListView) findViewById(R.id.replyList);
 	    
+	    //스크롤뷰 Pulltorefresh 적용
+	    mPullRefreshScrollView = (PullToRefreshScrollView) findViewById(R.id.detail_scroll);
+	    mPullRefreshScrollView.setMode(Mode.PULL_FROM_END);
+	    mPullRefreshScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
+	    	
+			@Override
+			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+				CommServer comm = new CommServer();
+			    comm.setParam("act", "dispStufinderStuffReplyList");
+			    comm.setParam("stuff_srl", String.valueOf(stuff_srl));
+			    comm.setParam("gaccount", gaccount);
+			    new getReplyTask().execute(comm);
+			}
+		});
+	    
+	    mScrollView = mPullRefreshScrollView.getRefreshableView();
+	    
+	    //리플 서버 접속
 	    CommServer comm = new CommServer();
 	    comm.setParam("act", "dispStufinderStuffReplyList");
 	    comm.setParam("stuff_srl", String.valueOf(stuff_srl));
 	    comm.setParam("gaccount", gaccount);
 	    new getReplyTask().execute(comm);
+	    
+	    
 	    
 	}
 	
@@ -197,7 +227,9 @@ public class DetailActivity extends Activity {
 	
 	private class getReplyTask extends AsyncTask<CommServer, Void, String> {
 		protected String doInBackground(CommServer... comm) {
+			Log.e("page_count", String.valueOf(reply_page));
 			String data = null;
+			comm[0].setParam("page", String.valueOf(++reply_page));
 			try {
 				data = comm[0].getData();
 			} catch (UnsupportedEncodingException e) {
@@ -215,15 +247,25 @@ public class DetailActivity extends Activity {
 			try {
 				resultObj = new JSONObject(result);
 				setReplyCount(resultObj.getInt("total_count"));
-				
-				jsonarr = resultObj.getJSONArray("data");
-				for (int i = 0; i < jsonarr.length(); i++) {
-					JSONObject jsonobj = jsonarr.getJSONObject(i);
-					Log.e("jsonobj", jsonobj.toString());
-					replyAdapter.add(new ReplyItem(jsonobj.getString("gaccount"), jsonobj.getString("content"), jsonobj.getString("regdate")));
+				Log.e("total_page", String.valueOf(resultObj.getInt("total_page")));
+				Log.e("reply_page", String.valueOf(reply_page));
+				if(resultObj.getInt("total_page") >= reply_page){
+					jsonarr = resultObj.getJSONArray("data");
+					for (int i = 0; i < jsonarr.length(); i++) {
+						JSONObject jsonobj = jsonarr.getJSONObject(i);
+						Log.e("jsonobj", jsonobj.toString());
+						replyAdapter.add(new ReplyItem(jsonobj.getString("gaccount"), jsonobj.getString("content"), jsonobj.getString("regdate")));
+					}
+					replyList.setAdapter(replyAdapter);
+					StufinderUtil.setListViewHeight(replyList);
 				}
-				replyList.setAdapter(replyAdapter);
-				StufinderUtil.setListViewHeight(replyList);
+				else{
+					Toast.makeText(DetailActivity.this, "댓글이 더 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
+					reply_page--;
+				}
+				
+				
+				mPullRefreshScrollView.onRefreshComplete();
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
