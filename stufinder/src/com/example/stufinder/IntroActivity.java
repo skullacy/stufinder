@@ -5,27 +5,28 @@ import java.io.UnsupportedEncodingException;
 import org.json.JSONObject;
 
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.example.stufinder.util.CommServer;
 import com.example.stufinder.util.StufinderUtil;
 import com.google.android.gcm.GCMRegistrar;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Window;
 
-public class IntroActivity extends Activity {
+public class IntroActivity extends SherlockActivity {
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    
 		super.onCreate(savedInstanceState);
-	    ActionBar actionBar = getActionBar();
+	    ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         
 	    setContentView(R.layout.activity_intro);
@@ -48,7 +49,6 @@ public class IntroActivity extends Activity {
   		
   		new CheckPushTask().execute(comm); 
   		
-	    
 	
 	}
 	
@@ -74,6 +74,7 @@ public class IntroActivity extends Activity {
 				Intent i = new Intent(IntroActivity.this, MainActivity.class);
 				startActivity(i);
 				finish();
+				overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 			}
 			catch(Exception e){
 				e.printStackTrace();

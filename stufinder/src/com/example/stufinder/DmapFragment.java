@@ -174,6 +174,7 @@ public class DmapFragment extends Fragment {
 		}
 		
 		startActivity(i);
+		getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 	}
 	
 	private class getImageTask extends AsyncTask<StufinderInfowindowAdapter, Void, StufinderInfowindowAdapter> {

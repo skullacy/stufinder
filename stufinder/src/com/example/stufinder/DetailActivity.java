@@ -93,7 +93,7 @@ public class DetailActivity extends Activity {
 							switch (which) {
 							case 0:
 								Log.e("dial", BT_phone.getText().toString());
-								Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+BT_phone.getText()));
+								Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+BT_phone.getText()));
 								startActivity(i);
 								break;
 
@@ -156,9 +156,11 @@ public class DetailActivity extends Activity {
 	    comm.setParam("gaccount", gaccount);
 	    new getReplyTask().execute(comm);
 	    
-	    
-	    
-	    
+	}
+	
+	private void setReplyCount(int count){
+		TextView replyCount = (TextView) findViewById(R.id.reply_count);
+		replyCount.setText(String.format("%d 개의 리플이 있습니다.", count));
 	}
 	
 	private class InsertReplyTask extends AsyncTask<CommServer, Void, String> {
@@ -207,9 +209,14 @@ public class DetailActivity extends Activity {
 		}
 
 		protected void onPostExecute(String result) {
+			Log.e("reply list", result);
+			JSONObject resultObj = null;
 			JSONArray jsonarr = null;
 			try {
-				jsonarr = new JSONArray(result);
+				resultObj = new JSONObject(result);
+				setReplyCount(resultObj.getInt("total_count"));
+				
+				jsonarr = resultObj.getJSONArray("data");
 				for (int i = 0; i < jsonarr.length(); i++) {
 					JSONObject jsonobj = jsonarr.getJSONObject(i);
 					Log.e("jsonobj", jsonobj.toString());

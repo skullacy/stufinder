@@ -66,6 +66,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 		Notification notification = new Notification(android.R.drawable.ic_input_add, ticker, System.currentTimeMillis());
 		
 		notification.setLatestEventInfo(context, title, msg, pendingIntent);
+		notification.defaults = Notification.DEFAULT_SOUND;
 		nm.notify(1234, notification);
 		
 	}
