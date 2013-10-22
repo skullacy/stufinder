@@ -24,6 +24,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -44,7 +46,7 @@ import android.widget.Toast;
 
 public class DetailActivity extends Activity {
 	
-	protected int stuff_srl;
+	protected String stuff_srl;
 	protected String gaccount;
 	protected AlertDialog.Builder alertDialog;
 	protected ProgressDialog dialog;
@@ -58,6 +60,7 @@ public class DetailActivity extends Activity {
 	protected PullToRefreshScrollView mPullRefreshScrollView;
 	protected ScrollView mScrollView;
 	protected int reply_page = 0;
+	protected int total_replycount = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +68,9 @@ public class DetailActivity extends Activity {
 	    setContentView(R.layout.activity_detail);
 	    
 	    final Intent intent = getIntent();
-	    stuff_srl = intent.getExtras().getInt("stuff_srl");
+	    Log.e("stuff_srl(string)", intent.getExtras().getString("stuff_srl"));
+	    Log.e("stuff_srl(int)", String.valueOf(intent.getExtras().getInt("stuff_srl")));
+	    stuff_srl = intent.getExtras().getString("stuff_srl");
 	    gaccount = intent.getExtras().getString("gaccount");
 	    
 	    TextView TV_title = (TextView) findViewById(R.id.title);
@@ -143,7 +148,7 @@ public class DetailActivity extends Activity {
 				}
 				
 				CommServer comm = new CommServer();
-				comm.setParam("stuff_srl", String.valueOf(stuff_srl));
+				comm.setParam("stuff_srl", stuff_srl);
 				comm.setParam("gaccount", gaccount);
 				comm.setParam("content", replyContent.getText().toString());
 				comm.setParam("act", "procStufinderInsertStuffReply");
@@ -169,7 +174,7 @@ public class DetailActivity extends Activity {
 			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
 				CommServer comm = new CommServer();
 			    comm.setParam("act", "dispStufinderStuffReplyList");
-			    comm.setParam("stuff_srl", String.valueOf(stuff_srl));
+			    comm.setParam("stuff_srl", stuff_srl);
 			    comm.setParam("gaccount", gaccount);
 			    new getReplyTask().execute(comm);
 			}
@@ -180,7 +185,7 @@ public class DetailActivity extends Activity {
 	    //리플 서버 접속
 	    CommServer comm = new CommServer();
 	    comm.setParam("act", "dispStufinderStuffReplyList");
-	    comm.setParam("stuff_srl", String.valueOf(stuff_srl));
+	    comm.setParam("stuff_srl", stuff_srl);
 	    comm.setParam("gaccount", gaccount);
 	    new getReplyTask().execute(comm);
 	    
@@ -189,6 +194,7 @@ public class DetailActivity extends Activity {
 	}
 	
 	private void setReplyCount(int count){
+		total_replycount = count;
 		TextView replyCount = (TextView) findViewById(R.id.reply_count);
 		replyCount.setText(String.format("%d 개의 리플이 있습니다.", count));
 	}
@@ -216,6 +222,7 @@ public class DetailActivity extends Activity {
 				replyList.setAdapter(replyAdapter);
 				StufinderUtil.setListViewHeight(replyList);
 				replyContent.setText(null);
+				setReplyCount(total_replycount + 1);
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -241,19 +248,16 @@ public class DetailActivity extends Activity {
 		}
 
 		protected void onPostExecute(String result) {
-			Log.e("reply list", result);
+			Log.e("result", result);
 			JSONObject resultObj = null;
 			JSONArray jsonarr = null;
 			try {
 				resultObj = new JSONObject(result);
 				setReplyCount(resultObj.getInt("total_count"));
-				Log.e("total_page", String.valueOf(resultObj.getInt("total_page")));
-				Log.e("reply_page", String.valueOf(reply_page));
 				if(resultObj.getInt("total_page") >= reply_page){
 					jsonarr = resultObj.getJSONArray("data");
 					for (int i = 0; i < jsonarr.length(); i++) {
 						JSONObject jsonobj = jsonarr.getJSONObject(i);
-						Log.e("jsonobj", jsonobj.toString());
 						replyAdapter.add(new ReplyItem(jsonobj.getString("gaccount"), jsonobj.getString("content"), jsonobj.getString("regdate")));
 					}
 					replyList.setAdapter(replyAdapter);
@@ -276,7 +280,6 @@ public class DetailActivity extends Activity {
 	private class getImageTask extends AsyncTask<CommServer, Void, Bitmap> {
 		protected Bitmap doInBackground(CommServer... comm) {
 			Bitmap bitmap = null;
-			Log.e("doInBackground", "getImageTask");
 			try {
 				bitmap = comm[0].getImage();
 			} catch (UnsupportedEncodingException e) {

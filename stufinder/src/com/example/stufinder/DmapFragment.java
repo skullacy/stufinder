@@ -160,12 +160,12 @@ public class DmapFragment extends Fragment {
 		Log.e("markerdata", markerdata.toString());
 		try {
 			i.putExtra("title", markerdata.getString("title"));
-			i.putExtra("lgselect", markerdata.getInt("lgselect"));
+			i.putExtra("lgselect", markerdata.getString("lgselect"));
 			i.putExtra("pos", markerdata.getString("pos"));
 			i.putExtra("phone", markerdata.getString("phone"));
 			i.putExtra("info", markerdata.getString("info"));
 			i.putExtra("date", markerdata.getString("date"));
-			i.putExtra("stuff_srl", markerdata.getInt("stuff_srl"));
+			i.putExtra("stuff_srl", markerdata.getString("stuff_srl"));
 			i.putExtra("gaccount", markerdata.getString("gaccount"));
 			i.putExtra("filepath", markerdata.getString("filepath"));
 		} catch (JSONException e) {

@@ -22,6 +22,7 @@
 	    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 	    <uses-permission android:name="android.permission.CALL_PHONE"/>
 	    <uses-permission android:name="android.permission.SEND_SMS"/>
+	    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
     <application
         android:allowBackup="true"
@@ -64,6 +65,13 @@
             </intent-filter>
         </receiver>
         <service android:name="GCMIntentService"></service>
+        <service 
+            android:name="com.example.stufinder.service.getGpsLocServ"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="stufinder.getGpsLocServ" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
