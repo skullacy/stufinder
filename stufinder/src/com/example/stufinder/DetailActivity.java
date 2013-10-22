@@ -64,6 +64,9 @@ public class DetailActivity extends Activity {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_detail);
 	    
+	    ActionBar actionBar = getActionBar();
+	    actionBar.hide();
+	    
 	    final Intent intent = getIntent();
 	    stuff_srl = intent.getExtras().getInt("stuff_srl");
 	    gaccount = intent.getExtras().getString("gaccount");
@@ -190,6 +193,7 @@ public class DetailActivity extends Activity {
 	
 	private void setReplyCount(int count){
 		TextView replyCount = (TextView) findViewById(R.id.reply_count);
+		
 		replyCount.setText(String.format("%d 개의 리플이 있습니다.", count));
 	}
 	

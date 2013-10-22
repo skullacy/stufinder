@@ -56,7 +56,7 @@ public class DmapFragment extends Fragment {
 		//구글맵 세팅
 		mGoogleMap = ((SupportMapFragment) getFragmentManager()
 				.findFragmentById(R.id.map)).getMap();
-		mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cp));
+		mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cp));
 		mGoogleMap.getUiSettings().setZoomControlsEnabled(isHidden());
 		//Infowindow 커스터마이징
 		mGoogleMap.setInfoWindowAdapter(new InfoWindowAdapter(){

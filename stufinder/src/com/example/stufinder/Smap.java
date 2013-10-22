@@ -11,6 +11,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,10 +33,14 @@ public class Smap extends FragmentActivity implements View.OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_smap);
+	    
+	    ActionBar actionBar = getActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(false);
 	    // TODO Auto-generated method stub
 	    
 	    mGoogleMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-	    mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cp));
+	    mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cp));
 	    mGoogleMap.addMarker(marker);
 	    
 	    //cray added 클릭했을때 마커등록과 화면 이동 
