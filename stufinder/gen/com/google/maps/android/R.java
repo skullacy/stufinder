@@ -150,10 +150,10 @@ public final class R {
 		public static final int abs__bright_foreground_disabled_holo_light = 0x7f090005;
 		public static final int abs__bright_foreground_holo_dark = 0x7f090002;
 		public static final int abs__bright_foreground_holo_light = 0x7f090003;
-		public static final int abs__primary_text_disable_only_holo_dark = 0x7f090010;
-		public static final int abs__primary_text_disable_only_holo_light = 0x7f090011;
-		public static final int abs__primary_text_holo_dark = 0x7f090012;
-		public static final int abs__primary_text_holo_light = 0x7f090013;
+		public static final int abs__primary_text_disable_only_holo_dark = 0x7f090011;
+		public static final int abs__primary_text_disable_only_holo_light = 0x7f090012;
+		public static final int abs__primary_text_holo_dark = 0x7f090013;
+		public static final int abs__primary_text_holo_light = 0x7f090014;
 		public static final int common_action_bar_splitter = 0x7f09000f;
 		public static final int common_signin_btn_dark_text_default = 0x7f090006;
 		public static final int common_signin_btn_dark_text_disabled = 0x7f090008;
@@ -164,8 +164,8 @@ public final class R {
 		public static final int common_signin_btn_light_text_disabled = 0x7f09000c;
 		public static final int common_signin_btn_light_text_focused = 0x7f09000d;
 		public static final int common_signin_btn_light_text_pressed = 0x7f09000b;
-		public static final int common_signin_btn_text_dark = 0x7f090014;
-		public static final int common_signin_btn_text_light = 0x7f090015;
+		public static final int common_signin_btn_text_dark = 0x7f090015;
+		public static final int common_signin_btn_text_light = 0x7f090016;
 	}
 	public static final class dimen {
 		public static final int abs__action_bar_default_height = 0x7f060006;

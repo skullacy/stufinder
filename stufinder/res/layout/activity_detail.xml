@@ -38,6 +38,7 @@
 			android:layout_alignTop="@id/stuffimg"
     	    android:layout_width="match_parent"
     	    android:layout_height="wrap_content"
+    	    android:padding="10dp"
     	    />
    	    
    	   		 <TextView
@@ -45,38 +46,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/photoup"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="#fff"
+            android:padding="10dp"
+            
              />
    	     	<TextView
             android:id="@+id/pos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" 
-            android:textSize="12sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:layout_alignTop="@id/photodown"
             android:textColor="#fff"
+            android:padding="10dp"
             />
-   	        <TextView
-          	android:id="@+id/losttext"
-          	android:layout_alignRight="@id/photoup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:text="분실/습득일" />
+   	    
    	    
    	    <TextView
 	        android:id="@+id/date"
 	        android:layout_alignRight="@id/photoup"
-	        android:layout_below="@id/losttext"
 	        android:layout_width="wrap_content"
-	        android:textSize="12sp"
+	        android:textSize="14sp"
 	        android:textColor="#fff"
 	        android:textStyle="bold"
+	        android:paddingRight="10dp"
+	        android:paddingTop="10dp"
 	        android:layout_height="wrap_content" />  
+	        
+   	    
+   	    <TextView
+          	android:id="@+id/losttext"
+          	android:layout_toLeftOf="@id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:textColor="#ffe6db"
+            android:paddingTop="11dp"
+            android:text="분실/습득일" />
+   	    
    	     <Button
           	android:id="@+id/phone"
           	android:background="@drawable/phonebtn"
@@ -99,11 +108,12 @@
 	        <TextView
 	            android:id="@+id/info"
 	            android:background="#010201"
-	            android:textSize="14sp"
+	            android:textSize="15sp"
 		        android:textColor="#fff"
 		        android:textStyle="bold"
 		        android:paddingTop="7dp"
-		        android:paddingLeft="10dp"
+		        android:paddingLeft="20dp"
+		        android:paddingRight="20dp"
 	            android:layout_width="match_parent"
 	            android:minHeight="100dp"
 	            android:layout_height="wrap_content"
@@ -118,6 +128,7 @@
                     android:id="@+id/reply_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
                     android:text="0"
 					android:textColor="#fff"
                     android:textSize="12sp" />

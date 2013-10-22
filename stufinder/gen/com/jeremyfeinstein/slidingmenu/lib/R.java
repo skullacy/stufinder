@@ -136,10 +136,10 @@ public final class R {
 		public static final int abs__bright_foreground_disabled_holo_light = 0x7f090005;
 		public static final int abs__bright_foreground_holo_dark = 0x7f090002;
 		public static final int abs__bright_foreground_holo_light = 0x7f090003;
-		public static final int abs__primary_text_disable_only_holo_dark = 0x7f090010;
-		public static final int abs__primary_text_disable_only_holo_light = 0x7f090011;
-		public static final int abs__primary_text_holo_dark = 0x7f090012;
-		public static final int abs__primary_text_holo_light = 0x7f090013;
+		public static final int abs__primary_text_disable_only_holo_dark = 0x7f090011;
+		public static final int abs__primary_text_disable_only_holo_light = 0x7f090012;
+		public static final int abs__primary_text_holo_dark = 0x7f090013;
+		public static final int abs__primary_text_holo_light = 0x7f090014;
 	}
 	public static final class dimen {
 		public static final int abs__action_bar_default_height = 0x7f060006;

@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
 import com.actionbarsherlock.view.Window;
@@ -58,7 +59,6 @@ ActionBar.OnNavigationListener, SearchView.OnQueryTextListener {
 	public void onCreate(Bundle savedInstanceState) {
 		setTheme(R.style.Theme_Sherlock);
 	    super.onCreate(savedInstanceState);
-	    
 	    requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 	    
 	    if (savedInstanceState != null)
@@ -111,7 +111,10 @@ ActionBar.OnNavigationListener, SearchView.OnQueryTextListener {
         // Inflate the menu; this adds items to the action bar if it is present.
     	//getSupportMenuInflater().inflate(R.menu.mainbar, menu);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+//        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setIcon(R.drawable.showlist);
 		
         Context context = getSupportActionBar().getThemedContext();
         
@@ -126,36 +129,29 @@ ActionBar.OnNavigationListener, SearchView.OnQueryTextListener {
         SearchView searchView = new SearchView(context);
         searchView.setQueryHint("Search");
         searchView.setOnQueryTextListener(this);
-        
         menu.add("Search")
         	.setIcon(R.drawable.abs__ic_search)
         	.setActionView(searchView)
         	.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-
+      
         return super.onCreateOptionsMenu(menu);
     }
 	
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item){
-//    	Log.e("item_idx", String.valueOf(item.getItemId()));
-//		
-//		switch(item.getItemId()){
-//		case R.id.item1:
-//			sm.toggle();
-//			break;
-//			
-//		case R.id.item2:
-//			break;
-//		
-//		case R.id.item3:
-//			break;
-//			
-//		default:
-//			return false; 
-//		}
-//    	
-//		return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+    	Log.e("item_idx", String.valueOf(item.getItemId()));
+		
+		switch(item.getItemId()){
+		case android.R.id.home:
+			sm.toggle();
+			break;
+			
+		default:
+			return false; 
+		}
+    	
+		return super.onOptionsItemSelected(item);
+    }
 	
 	public void getStuffList(){
  		CommServer comm = new CommServer();

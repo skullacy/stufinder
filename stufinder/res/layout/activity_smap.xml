@@ -11,6 +11,15 @@
      android:name="com.google.android.gms.maps.SupportMapFragment"
     
     />
+    <TextView 
+        android:text="클릭하여 위치를 설정하세요"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#55ff0000"
+        android:textColor="#fff"
+        android:padding="7dp"
+        android:layout_alignTop="@id/map"
+        />
     <Button
         android:id="@+id/locasave"
         android:layout_width="wrap_content"

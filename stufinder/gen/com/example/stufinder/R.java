@@ -1058,10 +1058,10 @@ containing a value of this type.
         public static final int abs__bright_foreground_disabled_holo_light=0x7f090005;
         public static final int abs__bright_foreground_holo_dark=0x7f090002;
         public static final int abs__bright_foreground_holo_light=0x7f090003;
-        public static final int abs__primary_text_disable_only_holo_dark=0x7f090010;
-        public static final int abs__primary_text_disable_only_holo_light=0x7f090011;
-        public static final int abs__primary_text_holo_dark=0x7f090012;
-        public static final int abs__primary_text_holo_light=0x7f090013;
+        public static final int abs__primary_text_disable_only_holo_dark=0x7f090011;
+        public static final int abs__primary_text_disable_only_holo_light=0x7f090012;
+        public static final int abs__primary_text_holo_dark=0x7f090013;
+        public static final int abs__primary_text_holo_light=0x7f090014;
         public static final int common_action_bar_splitter=0x7f09000f;
         /**  Sign-in Button Colors 
          */
@@ -1074,8 +1074,9 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f09000c;
         public static final int common_signin_btn_light_text_focused=0x7f09000d;
         public static final int common_signin_btn_light_text_pressed=0x7f09000b;
-        public static final int common_signin_btn_text_dark=0x7f090014;
-        public static final int common_signin_btn_text_light=0x7f090015;
+        public static final int common_signin_btn_text_dark=0x7f090015;
+        public static final int common_signin_btn_text_light=0x7f090016;
+        public static final int pressed_cray=0x7f090010;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1361,6 +1362,7 @@ containing a value of this type.
         public static final int regback=0x7f0200a6;
         public static final int replybtn=0x7f0200a7;
         public static final int shadow=0x7f0200a8;
+        public static final int showlist=0x7f0200a9;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f050036;
@@ -1406,7 +1408,7 @@ containing a value of this type.
         public static final int both=0x7f050003;
         public static final int content_frame=0x7f050064;
         public static final int content_reply=0x7f050054;
-        public static final int date=0x7f05004f;
+        public static final int date=0x7f05004e;
         public static final int dateb=0x7f05005f;
         public static final int detail_scroll=0x7f050048;
         public static final int disableHome=0x7f050015;
@@ -1430,7 +1432,7 @@ containing a value of this type.
         public static final int listMode=0x7f05000e;
         public static final int locasave=0x7f050063;
         public static final int lostp=0x7f050058;
-        public static final int losttext=0x7f05004e;
+        public static final int losttext=0x7f05004f;
         public static final int manualOnly=0x7f050004;
         public static final int map=0x7f050062;
         public static final int margin=0x7f05001e;
