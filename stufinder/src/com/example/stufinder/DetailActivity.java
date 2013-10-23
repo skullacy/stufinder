@@ -19,6 +19,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.app.Service;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -103,39 +104,46 @@ public class DetailActivity extends Activity {
 	    BT_phone.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				final String[] acts = new String[] {"전화걸기", "메세지 보내기"};
-				new AlertDialog.Builder(DetailActivity.this).setTitle("선택")
-					.setItems(acts, new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							switch (which) {
-							case 0:
-								Log.e("dial", BT_phone.getText().toString());
-								Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+BT_phone.getText()));
-								startActivity(i);
-								break;
-
-							case 1:
-								Log.e("message", StufinderUtil.getDefaultMsg(
-										intent.getExtras().getString("phone"), 
-										intent.getExtras().getInt("lgselect"), 
-										intent.getExtras().getString("title")));
-								SmsManager smsManager = SmsManager.getDefault();
-								String smsNumber = intent.getExtras().getString("phone");
-								String smsText = StufinderUtil.getDefaultMsg(
-										intent.getExtras().getString("phone"), 
-										intent.getExtras().getInt("lgselect"), 
-										intent.getExtras().getString("title"));
-								Intent in = new Intent(Intent.ACTION_SENDTO);
-								in.setData(Uri.parse("sms:"+BT_phone.getText()));
-								in.putExtra("sms_body", smsText);
-								startActivity(in);
-								//smsManager.sendTextMessage(smsNumber, null, smsText, null, null);
-								break;
-							}
-						}
-					})
-					.setNeutralButton("닫기", null).show();
+				
+				AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
+				LayoutInflater inflater = (LayoutInflater)getSystemService(Service.LAYOUT_INFLATER_SERVICE);
+				View view = inflater.inflate(R.layout.messagedialog, null);
+				builder.setView(view);
+				builder.setNeutralButton("닫기", null).show();
+				
+//				final String[] acts = new String[] {"전화걸기", "메세지 보내기"};
+//				new AlertDialog.Builder(DetailActivity.this).setTitle("선택")
+//					.setItems(acts, new DialogInterface.OnClickListener() {
+//						@Override
+//						public void onClick(DialogInterface dialog, int which) {
+//							switch (which) {
+//							case 0:
+//								Log.e("dial", BT_phone.getText().toString());
+//								Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+BT_phone.getText()));
+//								startActivity(i);
+//								break;
+//
+//							case 1:
+//								Log.e("message", StufinderUtil.getDefaultMsg(
+//										intent.getExtras().getString("phone"), 
+//										intent.getExtras().getInt("lgselect"), 
+//										intent.getExtras().getString("title")));
+//								SmsManager smsManager = SmsManager.getDefault();
+//								String smsNumber = intent.getExtras().getString("phone");
+//								String smsText = StufinderUtil.getDefaultMsg(
+//										intent.getExtras().getString("phone"), 
+//										intent.getExtras().getInt("lgselect"), 
+//										intent.getExtras().getString("title"));
+//								Intent in = new Intent(Intent.ACTION_SENDTO);
+//								in.setData(Uri.parse("sms:"+BT_phone.getText()));
+//								in.putExtra("sms_body", smsText);
+//								startActivity(in);
+//								//smsManager.sendTextMessage(smsNumber, null, smsText, null, null);
+//								break;
+//							}
+//						}
+//					})
+//					.setNeutralButton("닫기", null).show();
 			}
 		});
 	    
