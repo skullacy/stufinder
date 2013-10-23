@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.ui.IconGenerator;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.content.Intent;
 import android.graphics.Bitmap;

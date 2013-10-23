@@ -385,7 +385,7 @@ public final class R {
 		public static final int showCustom = 0x7f050014;
 		public static final int showHome = 0x7f050011;
 		public static final int showTitle = 0x7f050013;
-		public static final int slidingmenumain = 0x7f050072;
+		public static final int slidingmenumain = 0x7f050073;
 		public static final int tabMode = 0x7f05000f;
 		public static final int terrain = 0x7f050023;
 		public static final int text = 0x7f050025;

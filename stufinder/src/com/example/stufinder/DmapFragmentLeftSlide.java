@@ -12,6 +12,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
 import android.content.Context;
@@ -78,13 +79,15 @@ public class DmapFragmentLeftSlide extends ListFragment{
 		public String date;
 		public String info;
 		public Marker marker;
+		public String imageUrl;
 		
-		public StuffItem(String title, String pos, String date, String info, Marker marker) {
+		public StuffItem(String title, String pos, String date, String info, String imageUrl, Marker marker) {
 			this.title = title;
 			this.pos = pos;
 			this.date = date;
 			this.info = info;
 			this.marker = marker;
+			this.imageUrl = imageUrl;
 		}
 	}
 
@@ -109,6 +112,9 @@ public class DmapFragmentLeftSlide extends ListFragment{
 			
 			TextView info = (TextView) convertView.findViewById(R.id.row_info);
 			info.setText(getItem(position).info);
+			
+			ImageView image = (ImageView) convertView.findViewById(R.id.row_image);
+			UrlImageViewHelper.setUrlDrawable(image, getItem(position).imageUrl, R.drawable.ic_launcher);
 
 			return convertView;
 		}
@@ -129,6 +135,7 @@ public class DmapFragmentLeftSlide extends ListFragment{
 						jsonobj.getString("pos"), 
 						jsonobj.getString("date"), 
 						jsonobj.getString("info"),
+						jsonobj.getString("filepath"),
 						(Marker) mapEntry.getKey()));
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
