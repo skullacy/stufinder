@@ -150,10 +150,10 @@ public final class R {
 		public static final int abs__bright_foreground_disabled_holo_light = 0x7f070005;
 		public static final int abs__bright_foreground_holo_dark = 0x7f070002;
 		public static final int abs__bright_foreground_holo_light = 0x7f070003;
-		public static final int abs__primary_text_disable_only_holo_dark = 0x7f070011;
-		public static final int abs__primary_text_disable_only_holo_light = 0x7f070012;
-		public static final int abs__primary_text_holo_dark = 0x7f070013;
-		public static final int abs__primary_text_holo_light = 0x7f070014;
+		public static final int abs__primary_text_disable_only_holo_dark = 0x7f070015;
+		public static final int abs__primary_text_disable_only_holo_light = 0x7f070016;
+		public static final int abs__primary_text_holo_dark = 0x7f070017;
+		public static final int abs__primary_text_holo_light = 0x7f070018;
 		public static final int common_action_bar_splitter = 0x7f07000f;
 		public static final int common_signin_btn_dark_text_default = 0x7f070006;
 		public static final int common_signin_btn_dark_text_disabled = 0x7f070008;
@@ -164,8 +164,8 @@ public final class R {
 		public static final int common_signin_btn_light_text_disabled = 0x7f07000c;
 		public static final int common_signin_btn_light_text_focused = 0x7f07000d;
 		public static final int common_signin_btn_light_text_pressed = 0x7f07000b;
-		public static final int common_signin_btn_text_dark = 0x7f070015;
-		public static final int common_signin_btn_text_light = 0x7f070016;
+		public static final int common_signin_btn_text_dark = 0x7f070019;
+		public static final int common_signin_btn_text_light = 0x7f07001a;
 	}
 	public static final class dimen {
 		public static final int abs__action_bar_default_height = 0x7f080001;
@@ -327,11 +327,11 @@ public final class R {
 		public static final int common_signin_btn_text_normal_light = 0x7f02008c;
 		public static final int common_signin_btn_text_pressed_dark = 0x7f02008d;
 		public static final int common_signin_btn_text_pressed_light = 0x7f02008e;
-		public static final int ic_launcher = 0x7f02009e;
-		public static final int ic_plusone_medium_off_client = 0x7f02009f;
-		public static final int ic_plusone_small_off_client = 0x7f0200a0;
-		public static final int ic_plusone_standard_off_client = 0x7f0200a1;
-		public static final int ic_plusone_tall_off_client = 0x7f0200a2;
+		public static final int ic_launcher = 0x7f02009f;
+		public static final int ic_plusone_medium_off_client = 0x7f0200a0;
+		public static final int ic_plusone_small_off_client = 0x7f0200a1;
+		public static final int ic_plusone_standard_off_client = 0x7f0200a2;
+		public static final int ic_plusone_tall_off_client = 0x7f0200a3;
 	}
 	public static final class id {
 		public static final int abs__action_bar = 0x7f050036;
@@ -389,7 +389,7 @@ public final class R {
 		public static final int showCustom = 0x7f050008;
 		public static final int showHome = 0x7f050005;
 		public static final int showTitle = 0x7f050007;
-		public static final int slidingmenumain = 0x7f050076;
+		public static final int slidingmenumain = 0x7f050077;
 		public static final int tabMode = 0x7f050003;
 		public static final int terrain = 0x7f050023;
 		public static final int text = 0x7f050025;
@@ -421,10 +421,10 @@ public final class R {
 		public static final int abs__search_dropdown_item_icons_2line = 0x7f030012;
 		public static final int abs__search_view = 0x7f030013;
 		public static final int abs__simple_dropdown_hint = 0x7f030014;
-		public static final int sherlock_spinner_dropdown_item = 0x7f030026;
-		public static final int sherlock_spinner_item = 0x7f030027;
-		public static final int slidingmenumain = 0x7f030028;
-		public static final int text_bubble = 0x7f030029;
+		public static final int sherlock_spinner_dropdown_item = 0x7f030027;
+		public static final int sherlock_spinner_item = 0x7f030028;
+		public static final int slidingmenumain = 0x7f030029;
+		public static final int text_bubble = 0x7f03002a;
 	}
 	public static final class string {
 		public static final int abs__action_bar_home_description = 0x7f0a0000;

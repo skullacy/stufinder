@@ -29,6 +29,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -140,13 +141,23 @@ public class DmapFragment extends Fragment {
 	
 	public void onMarkerSelected(Marker marker){
 		try {
-			Log.e("onMarkerSelected", "1111");
-			String imagePath = allMarkersData.get(marker).getString("filepath");
-			Log.e("imagePath", imagePath);
-			CommServer comm = new CommServer();
-			comm.setServerUrl(imagePath);
-			StufinderInfowindowAdapter iwadt = new StufinderInfowindowAdapter(comm, marker);
-			new getImageTask().execute(iwadt);
+			if(allMarkersData.get(marker).getString("filename") == "null")
+			{
+				Bitmap noimg=BitmapFactory.decodeResource(getResources(), R.drawable.noimage);
+				allInfowindowBitmap.put(marker, noimg);
+				marker.showInfoWindow();
+			}
+			else
+			{
+				Log.e("onMarkerSelected", "1111");
+				String imagePath = allMarkersData.get(marker).getString("filepath");
+				Log.e("imagePath", imagePath);
+				CommServer comm = new CommServer();
+				comm.setServerUrl(imagePath);
+				StufinderInfowindowAdapter iwadt = new StufinderInfowindowAdapter(comm, marker);
+				new getImageTask().execute(iwadt);
+			}
+			
 			
 			
 		} catch (JSONException e) {
@@ -168,6 +179,7 @@ public class DmapFragment extends Fragment {
 			i.putExtra("date", markerdata.getString("date"));
 			i.putExtra("stuff_srl", markerdata.getString("stuff_srl"));
 			i.putExtra("gaccount", markerdata.getString("gaccount"));
+			i.putExtra("filename", markerdata.getString("filename"));
 			i.putExtra("filepath", markerdata.getString("filepath"));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

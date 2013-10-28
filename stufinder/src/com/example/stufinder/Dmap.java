@@ -70,6 +70,7 @@ ActionBar.OnNavigationListener, SearchView.OnQueryTextListener {
 		
 		// 상위 fragment 설정
 		setContentView(R.layout.fragment_dmap);
+		
 		getSupportFragmentManager()
 		.beginTransaction()
 		.replace(R.id.content_frame, dMapFragment)
@@ -83,11 +84,11 @@ ActionBar.OnNavigationListener, SearchView.OnQueryTextListener {
 		.commit();
 		
 		//슬라이드메뉴 연결
+		
 		sm = getSlidingMenu();
  		sm.setShadowWidthRes(R.dimen.shadow_width);
  		sm.setShadowDrawable(R.drawable.shadow);
  		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
- 		sm.setFadeDegree(0.35f);
  		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
  		
  		setSlidingActionBarEnabled(false);

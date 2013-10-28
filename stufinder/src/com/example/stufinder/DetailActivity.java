@@ -73,9 +73,29 @@ public class DetailActivity extends Activity {
 	    setContentView(R.layout.activity_detail);
 	    
 	    ActionBar actionBar = getActionBar();
-	    actionBar.hide();
+	    actionBar.setDisplayShowCustomEnabled(true);
+	    actionBar.setCustomView(R.layout.actionbar_custom);
+	    actionBar.setDisplayShowHomeEnabled(false);
+	    
+	    
 	    
 	    final Intent intent = getIntent();
+	    
+	    if(intent.getExtras().getString("lgselect").equals("0"))
+	    {
+	    	View view = new View(this);
+	    	TextView actionbarText = (TextView)findViewById(R.id.findlosttext);
+	    	actionbarText.setText("ÁÖ¿ü¾î¿ä");
+	    	actionbarText.setTextColor(view.getResources().getColorStateList(R.color.bar_zerolost));
+	    }
+	    else if(intent.getExtras().getString("lgselect").equals("1"))
+	    {
+	    	View view = new View(this);
+	    	TextView actionbarText = (TextView)findViewById(R.id.findlosttext);
+	    	actionbarText.setText("ÀÒ¾î¹ö·È¾î¿ä");
+	    	actionbarText.setTextColor(view.getResources().getColorStateList(R.color.bar_onefind));
+	    }
+	    
 	    Log.e("stuff_srl(string)", intent.getExtras().getString("stuff_srl"));
 	    Log.e("stuff_srl(int)", String.valueOf(intent.getExtras().getInt("stuff_srl")));
 	    stuff_srl = intent.getExtras().getString("stuff_srl");
@@ -95,13 +115,27 @@ public class DetailActivity extends Activity {
 	    
 	    TextView TV_info = (TextView) findViewById(R.id.info);
 	    TV_info.setText(intent.getExtras().getString("info"));
-	    
-	    String filepath = intent.getExtras().getString("filepath");
-	    CommServer imgcomm = new CommServer();
-	    imgcomm.setServerUrl(filepath);
 	    IV_stuffimg = (ImageView) findViewById(R.id.stuffimg);
-	   
-	    new getImageTask().execute(imgcomm);
+	    if(intent.getExtras().getString("filename").equals("null"))
+	    {
+	    	WindowManager wm = (WindowManager)getSystemService(WINDOW_SERVICE);
+		    Display display = wm.getDefaultDisplay();
+		    int width = display.getWidth();
+		    System.out.println(width);
+		    Bitmap noimg=BitmapFactory.decodeResource(getResources(), R.drawable.noimage);
+		    Bitmap resizebitmap = Bitmap.createScaledBitmap(noimg,width,width,true);
+			IV_stuffimg.setImageBitmap(resizebitmap);
+	    }
+	    else
+	    {
+	    	String filepath = intent.getExtras().getString("filepath");
+		    CommServer imgcomm = new CommServer();
+		    imgcomm.setServerUrl(filepath);
+		    
+		   
+		    new getImageTask().execute(imgcomm);
+	    }
+	    
 	    
 	    
 		

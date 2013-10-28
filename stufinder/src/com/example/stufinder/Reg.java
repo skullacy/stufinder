@@ -48,7 +48,7 @@ public class Reg extends Activity implements View.OnClickListener {
 
 	private static final String TEMP_PHOTO_FILE = "temp.jpg";
 	private static final int REQ_CODE_PICK_IMAGE = 0;
-	Bitmap selectedImage = null;
+	Bitmap selectedImage;
 
 	private Button PickDate;
 	EditText phoneEdit;

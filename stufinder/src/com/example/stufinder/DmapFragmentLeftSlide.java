@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class DmapFragmentLeftSlide extends ListFragment{
@@ -77,15 +78,16 @@ public class DmapFragmentLeftSlide extends ListFragment{
 		public String title;
 		public String pos;
 		public String date;
-		public String info;
+		public String lgselect;
+//		public String info;
 		public Marker marker;
 		public String imageUrl;
 		
-		public StuffItem(String title, String pos, String date, String info, String imageUrl, Marker marker) {
+		public StuffItem(String title, String pos, String date, String lgselect, String imageUrl, Marker marker) {
 			this.title = title;
 			this.pos = pos;
 			this.date = date;
-			this.info = info;
+			this.lgselect = lgselect;
 			this.marker = marker;
 			this.imageUrl = imageUrl;
 		}
@@ -110,11 +112,21 @@ public class DmapFragmentLeftSlide extends ListFragment{
 			TextView date = (TextView) convertView.findViewById(R.id.row_date);
 			date.setText(getItem(position).date);
 			
-			TextView info = (TextView) convertView.findViewById(R.id.row_info);
-			info.setText(getItem(position).info);
+			System.out.println(getItem(position).lgselect);
+			
+			RelativeLayout rm = (RelativeLayout)convertView.findViewById(R.id.findlostlist);
+			if(Integer.parseInt(getItem(position).lgselect)==0)
+			{
+				rm.setBackgroundResource(R.color.list_zerolost);
+			}
+			else 
+				rm.setBackgroundResource(R.color.list_onefind);
+
+//			TextView info = (TextView) convertView.findViewById(R.id.row_info);
+//			info.setText(getItem(position).info);
 			
 			ImageView image = (ImageView) convertView.findViewById(R.id.row_image);
-			UrlImageViewHelper.setUrlDrawable(image, getItem(position).imageUrl, R.drawable.ic_launcher);
+			UrlImageViewHelper.setUrlDrawable(image, getItem(position).imageUrl, R.drawable.noimage);
 
 			return convertView;
 		}
@@ -133,8 +145,9 @@ public class DmapFragmentLeftSlide extends ListFragment{
 			try {
 				adapter.add(new StuffItem(jsonobj.getString("title"), 
 						jsonobj.getString("pos"), 
-						jsonobj.getString("date"), 
-						jsonobj.getString("info"),
+						jsonobj.getString("date"),
+						jsonobj.getString("lgselect"),
+//						jsonobj.getString("info"),
 						jsonobj.getString("filepath"),
 						(Marker) mapEntry.getKey()));
 			} catch (JSONException e) {

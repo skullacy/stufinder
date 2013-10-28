@@ -1,44 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
-
-   		<ImageView 
-   		    android:id="@+id/row_image"
-   		    android:layout_width="50dp"
-   		    android:layout_height="50dp"
-   		    />
-        <TextView
-            android:id="@+id/row_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="제목"
-            android:textSize="13sp"
-            />
-        <TextView
-            android:id="@+id/row_pos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:text="위치"
-            />
-        <TextView 
-            android:id="@+id/row_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2000-00-00 11:11:11"
-            android:textSize="8sp"
-            />
-
-    <TextView
-        android:id="@+id/row_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:text="설명요약"
-        android:textSize="10sp"
-        android:textAppearance="@android:style/TextAppearance.Medium" />
-
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="vertical">
+	   <RelativeLayout 
+	       android:id="@+id/findlostlist"
+	       android:layout_width="match_parent"
+	       android:layout_height="wrap_content"
+	        >
+	  		<ImageView 
+	  		    android:id="@+id/row_image"
+	  		    android:layout_width="50dp"
+	  		    android:layout_height="50dp"
+	  		    android:layout_marginRight="3dp"
+	  		    />
+	       <TextView
+	           android:id="@+id/row_title"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:text="제목"
+	           android:layout_toRightOf="@id/row_image"
+	           android:textColor="#fff"
+	           android:textStyle="bold"
+	           android:textSize="14sp"
+	           />
+	        <TextView 
+	           android:id="@+id/row_date"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:layout_below="@id/row_title"
+	           android:layout_toRightOf="@id/row_image"
+	           android:text="2000-00-00 11:11:11"
+	           android:textSize="11sp"
+	           android:textColor="#fff"
+	           />
+	       <TextView
+	           android:id="@+id/row_pos"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:textSize="13sp"
+	           android:textColor="#fff"
+	           android:text="위치"
+	           android:layout_below="@id/row_date"
+	           android:layout_toRightOf="@id/row_image"
+	           />
+	      
+	</RelativeLayout>
 </LinearLayout>
+

@@ -19,4 +19,8 @@
 
 <resources>
     <color name="pressed_cray">#CC945C39</color>
+    <color name="list_zerolost">#0099cc</color>
+    <color name="list_onefind">#ff8800</color>
+    <color name="bar_zerolost">#00bfff</color>
+    <color name="bar_onefind">#ff8800</color>
 </resources>
