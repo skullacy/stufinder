@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.stufinder.util.CommServer;
+import com.example.stufinder.util.StufinderDialog;
 import com.example.stufinder.util.StufinderInfowindowAdapter;
 import com.example.stufinder.util.StufinderUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,6 +19,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.Context;
@@ -35,6 +37,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -62,6 +65,7 @@ public class DetailActivity extends Activity {
 	protected ScrollView mScrollView;
 	protected int reply_page = 0;
 	protected int total_replycount = 0;
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -100,16 +104,61 @@ public class DetailActivity extends Activity {
 	    new getImageTask().execute(imgcomm);
 	    
 	    
+		
 	    //연락처 버튼 클릭시 추가행동 선택메뉴 나타나기
 	    BT_phone.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				
-				AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
-				LayoutInflater inflater = (LayoutInflater)getSystemService(Service.LAYOUT_INFLATER_SERVICE);
-				View view = inflater.inflate(R.layout.messagedialog, null);
-				builder.setView(view);
-				builder.setNeutralButton("닫기", null).show();
+				Bundle b = new Bundle();
+				b.putString("phone", BT_phone.getText().toString());
+				b.putInt("lgselect", intent.getExtras().getInt("lgselect"));
+				b.putString("title", intent.getExtras().getString("title"));
+				
+				StufinderDialog studialog = new StufinderDialog(DetailActivity.this, b);
+				studialog.getDialog().show();
+				
+//				LayoutInflater inflater = (LayoutInflater)getSystemService(Service.LAYOUT_INFLATER_SERVICE);
+//				View view = inflater.inflate(R.layout.messagedialog, null);
+//				builder.setView(view);
+//				builder.show();
+//				
+//				Button btn = (Button)view.findViewById(R.id.callbtn);
+//				btn.setOnClickListener(new OnClickListener() {
+//					@Override
+//					public void onClick(View v) {
+//						// TODO Auto-generated method stub
+//						Log.e("dial", BT_phone.getText().toString());
+//						Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+BT_phone.getText()));
+//						startActivity(i);
+//					}
+//				});
+//				Button btns = (Button)view.findViewById(R.id.smsbtn);
+//				btns.setOnClickListener(new OnClickListener() {
+//					@Override
+//					public void onClick(View v) {
+//						// TODO Auto-generated method stub
+//						String smsText = StufinderUtil.getDefaultMsg(
+//								intent.getExtras().getString("phone"), 
+//								intent.getExtras().getInt("lgselect"), 
+//								intent.getExtras().getString("title"));
+//						Intent in = new Intent(Intent.ACTION_SENDTO);
+//						in.setData(Uri.parse("sms:"+BT_phone.getText()));
+//						in.putExtra("sms_body", smsText);
+//						startActivity(in);
+//					}
+//				});
+//				
+//				Button btnc = (Button)view.findViewById(R.id.closebtn);
+//				btnc.setOnClickListener(new OnClickListener() {
+//					@Override
+//					public void onClick(View v) {
+//						// TODO Auto-generated method stub
+//						dismiss();
+//					}
+//				});
+//				
+				
 				
 //				final String[] acts = new String[] {"전화걸기", "메세지 보내기"};
 //				new AlertDialog.Builder(DetailActivity.this).setTitle("선택")

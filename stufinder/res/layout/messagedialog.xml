@@ -1,6 +1,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#242c37"
+    android:padding="5dp"
     android:orientation="vertical" >
-
+	
+    <Button
+        android:id="@+id/callbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#ded0a5"
+        android:layout_marginBottom="2dp"
+        android:textStyle="bold"
+        android:text="전화걸기" />
+    <Button
+        android:id="@+id/smsbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:background="#ded0a5"
+        android:textStyle="bold"
+        android:text="문자보내기" />
+    
+    <Button
+        android:id="@+id/closebtn"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="#974646"
+        android:textSize="11sp"
+        android:textColor="#eee"
+        android:text="닫기" />
+       
+        
 </LinearLayout>
