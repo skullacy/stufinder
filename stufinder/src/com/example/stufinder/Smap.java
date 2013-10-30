@@ -88,6 +88,7 @@ public class Smap extends FragmentActivity implements View.OnClickListener {
 		intent.putExtra("lati", lati);
 		intent.putExtra("longi", longi);
 		startActivity(intent); 
+		finish();
 
 	}
 }

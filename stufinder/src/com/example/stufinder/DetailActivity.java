@@ -85,14 +85,15 @@ public class DetailActivity extends Activity {
 	    {
 	    	View view = new View(this);
 	    	TextView actionbarText = (TextView)findViewById(R.id.findlosttext);
-	    	actionbarText.setText("ÁÖ¿ü¾î¿ä");
+	    	
+	    	actionbarText.setText(intent.getExtras().getString("title")+ " " + "ÁÖ¿ü¾î¿ä");
 	    	actionbarText.setTextColor(view.getResources().getColorStateList(R.color.bar_zerolost));
 	    }
 	    else if(intent.getExtras().getString("lgselect").equals("1"))
 	    {
 	    	View view = new View(this);
 	    	TextView actionbarText = (TextView)findViewById(R.id.findlosttext);
-	    	actionbarText.setText("ÀÒ¾î¹ö·È¾î¿ä");
+	    	actionbarText.setText(intent.getExtras().getString("title") + " " +"ÀÒ¾î¹ö·È¾î¿ä");
 	    	actionbarText.setTextColor(view.getResources().getColorStateList(R.color.bar_onefind));
 	    }
 	    
@@ -101,8 +102,6 @@ public class DetailActivity extends Activity {
 	    stuff_srl = intent.getExtras().getString("stuff_srl");
 	    gaccount = intent.getExtras().getString("gaccount");
 	    
-	    TextView TV_title = (TextView) findViewById(R.id.title);
-	    TV_title.setText(intent.getExtras().getString("title")); 
 	    
 	    TextView TV_pos = (TextView) findViewById(R.id.pos);
 	    TV_pos.setText(intent.getExtras().getString("pos"));
@@ -152,81 +151,7 @@ public class DetailActivity extends Activity {
 				StufinderDialog studialog = new StufinderDialog(DetailActivity.this, b);
 				studialog.getDialog().show();
 				
-//				LayoutInflater inflater = (LayoutInflater)getSystemService(Service.LAYOUT_INFLATER_SERVICE);
-//				View view = inflater.inflate(R.layout.messagedialog, null);
-//				builder.setView(view);
-//				builder.show();
-//				
-//				Button btn = (Button)view.findViewById(R.id.callbtn);
-//				btn.setOnClickListener(new OnClickListener() {
-//					@Override
-//					public void onClick(View v) {
-//						// TODO Auto-generated method stub
-//						Log.e("dial", BT_phone.getText().toString());
-//						Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+BT_phone.getText()));
-//						startActivity(i);
-//					}
-//				});
-//				Button btns = (Button)view.findViewById(R.id.smsbtn);
-//				btns.setOnClickListener(new OnClickListener() {
-//					@Override
-//					public void onClick(View v) {
-//						// TODO Auto-generated method stub
-//						String smsText = StufinderUtil.getDefaultMsg(
-//								intent.getExtras().getString("phone"), 
-//								intent.getExtras().getInt("lgselect"), 
-//								intent.getExtras().getString("title"));
-//						Intent in = new Intent(Intent.ACTION_SENDTO);
-//						in.setData(Uri.parse("sms:"+BT_phone.getText()));
-//						in.putExtra("sms_body", smsText);
-//						startActivity(in);
-//					}
-//				});
-//				
-//				Button btnc = (Button)view.findViewById(R.id.closebtn);
-//				btnc.setOnClickListener(new OnClickListener() {
-//					@Override
-//					public void onClick(View v) {
-//						// TODO Auto-generated method stub
-//						dismiss();
-//					}
-//				});
-//				
-				
-				
-//				final String[] acts = new String[] {"ÀüÈ­°É±â", "¸Þ¼¼Áö º¸³»±â"};
-//				new AlertDialog.Builder(DetailActivity.this).setTitle("¼±ÅÃ")
-//					.setItems(acts, new DialogInterface.OnClickListener() {
-//						@Override
-//						public void onClick(DialogInterface dialog, int which) {
-//							switch (which) {
-//							case 0:
-//								Log.e("dial", BT_phone.getText().toString());
-//								Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+BT_phone.getText()));
-//								startActivity(i);
-//								break;
-//
-//							case 1:
-//								Log.e("message", StufinderUtil.getDefaultMsg(
-//										intent.getExtras().getString("phone"), 
-//										intent.getExtras().getInt("lgselect"), 
-//										intent.getExtras().getString("title")));
-//								SmsManager smsManager = SmsManager.getDefault();
-//								String smsNumber = intent.getExtras().getString("phone");
-//								String smsText = StufinderUtil.getDefaultMsg(
-//										intent.getExtras().getString("phone"), 
-//										intent.getExtras().getInt("lgselect"), 
-//										intent.getExtras().getString("title"));
-//								Intent in = new Intent(Intent.ACTION_SENDTO);
-//								in.setData(Uri.parse("sms:"+BT_phone.getText()));
-//								in.putExtra("sms_body", smsText);
-//								startActivity(in);
-//								//smsManager.sendTextMessage(smsNumber, null, smsText, null, null);
-//								break;
-//							}
-//						}
-//					})
-//					.setNeutralButton("´Ý±â", null).show();
+
 			}
 		});
 	    

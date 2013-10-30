@@ -36,7 +36,10 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class DmapFragment extends Fragment {
@@ -86,6 +89,29 @@ public class DmapFragment extends Fragment {
 				return true;
 			}
 		});
+		//dmap 글쓰기 버튼 
+		Button btnfind = (Button)v.findViewById(R.id.dmapfindbtn);
+		btnfind.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				
+				Intent intent = new Intent(getActivity(), Smap.class);
+				int selectp = 0;
+				intent.putExtra("selectp", selectp);
+				startActivity(intent);
+			}
+		});	
+		
+		Button btnlost = (Button)v.findViewById(R.id.dmaplostbtn);
+		btnlost.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(), Smap.class);
+				int selectp = 1;
+				intent.putExtra("selectp", selectp);
+				startActivity(intent);
+			}
+		});
 		
 		//Infowindow 클릭이벤트
 		mGoogleMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
@@ -98,6 +124,13 @@ public class DmapFragment extends Fragment {
 		return v;
 	}
 	
+	
+	
+	private Button findViewById(int dmapfindbtn) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public Map<Marker, JSONObject> addMarker(String commResult) {
 		//초기화
 		JSONArray jsonarr = null;
@@ -212,5 +245,7 @@ public class DmapFragment extends Fragment {
 			mGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(iwadt.marker.getPosition()), 250, null);
 		}
 	}
+
+
 
 }
