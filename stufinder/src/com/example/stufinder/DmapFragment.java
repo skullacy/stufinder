@@ -96,8 +96,8 @@ public class DmapFragment extends Fragment {
 			public void onClick(View v) {
 				
 				Intent intent = new Intent(getActivity(), Smap.class);
-				int selectp = 0;
-				intent.putExtra("selectp", selectp);
+				int lgselect = 0;
+				intent.putExtra("lgselect", lgselect);
 				startActivity(intent);
 			}
 		});	
@@ -107,8 +107,8 @@ public class DmapFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(), Smap.class);
-				int selectp = 1;
-				intent.putExtra("selectp", selectp);
+				int lgselect = 1;
+				intent.putExtra("lgselect", lgselect);
 				startActivity(intent);
 			}
 		});

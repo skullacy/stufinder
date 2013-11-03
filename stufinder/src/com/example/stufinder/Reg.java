@@ -55,6 +55,12 @@ public class Reg extends Activity implements View.OnClickListener {
 	EditText posEdit;
 	EditText infoEdit;
 	EditText writep;
+	
+	String stuff_srl;
+	Boolean ismodify;
+	Double lati;
+	Double longi;
+	int lgselect;
 
 	Button saveBtn;
 	private int mYear;
@@ -69,26 +75,59 @@ public class Reg extends Activity implements View.OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_reg);
-
+		
 		ActionBar actionBar = getActionBar();
 		actionBar.hide();
-
+		
+		Log.e("222222222222", "129837189243");
 		writep = (EditText) findViewById(R.id.writep);
 		phoneEdit = (EditText) findViewById(R.id.phonet);
-
 		// 전화번호 형식으로 자동입력 (미완성)
-		phoneEdit
-				.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
-
-		// 현재 핸드폰 전화번호 자동입력
-		TelephonyManager telManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-		phoneEdit.setText(telManager.getLine1Number());
-
+		phoneEdit.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+		
 		posEdit = (EditText) findViewById(R.id.post);
 		infoEdit = (EditText) findViewById(R.id.infot);
 		((Button) findViewById(R.id.saved)).setOnClickListener(this);
-
 		Button photoUp = (Button) findViewById(R.id.photoUpdate);
+		
+		PickDate = (Button) findViewById(R.id.dateb);
+		Log.e("before intent", "before intent");
+		Intent intent = getIntent();
+		
+		
+		
+		
+		ismodify = intent.getExtras().containsKey("type");
+		//Log.e("intent type", intent.getExtras().getString("type").toString());
+		if(ismodify){
+			lati = Double.parseDouble(intent.getExtras().getString("lati"));
+			longi = Double.parseDouble(intent.getExtras().getString("longi"));
+			lgselect = Integer.parseInt(intent.getExtras().getString("lgselect"));
+			
+			posEdit.setText(intent.getExtras().getString("pos"));
+			phoneEdit.setText(intent.getExtras().getString("phone"));
+			PickDate.setText(intent.getExtras().getString("date"));
+			infoEdit.setText(intent.getExtras().getString("info"));
+			writep.setText(intent.getExtras().getString("title"));
+			stuff_srl = intent.getExtras().getString("stuff_srl");
+		}
+		else{
+			lati = intent.getExtras().getDouble("lati");
+			longi = intent.getExtras().getDouble("longi");
+			lgselect = intent.getExtras().getInt("lgselect");
+			
+			// 현재 핸드폰 전화번호 자동입력
+			TelephonyManager telManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+			phoneEdit.setText(telManager.getLine1Number());
+			
+			
+			final Calendar c = Calendar.getInstance();
+			mYear = c.get(Calendar.YEAR);
+			mMonth = c.get(Calendar.MONTH);
+			mDay = c.get(Calendar.DAY_OF_MONTH);
+			updateDisplay();
+		}
+
 		photoUp.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -138,7 +177,7 @@ public class Reg extends Activity implements View.OnClickListener {
 
 		});
 
-		PickDate = (Button) findViewById(R.id.dateb);
+		
 		PickDate.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -147,11 +186,7 @@ public class Reg extends Activity implements View.OnClickListener {
 			}
 		});
 
-		final Calendar c = Calendar.getInstance();
-		mYear = c.get(Calendar.YEAR);
-		mMonth = c.get(Calendar.MONTH);
-		mDay = c.get(Calendar.DAY_OF_MONTH);
-		updateDisplay();
+		
 	}
 
 	private void updateDisplay() {
@@ -184,26 +219,25 @@ public class Reg extends Activity implements View.OnClickListener {
 
 	public void setCommSubmit(boolean sendPush) {
 		// TODO Auto-generated method stub
-		Intent gps = getIntent();
-
 		String pos = posEdit.getText().toString();
 		String phone = phoneEdit.getText().toString();
 		String date = PickDate.getText().toString();
 		String info = infoEdit.getText().toString();
 		String category = writep.getText().toString();
 
-		Double lati = gps.getExtras().getDouble("lati");
-		Double longi = gps.getExtras().getDouble("longi");
-		String lgselect = gps.getExtras().get("selectp").toString();
+		
 
 		Log.e("onClick", "aaaa");
 
 		CommServer comm = new CommServer();
 		comm.setParam("act", "procStufinderInsertData");
+		if(ismodify){
+			comm.setParam("stuff_srl", stuff_srl);
+		}
 		comm.setParam("title", category);
 		comm.setParam("pos", pos);
 		comm.setParam("phone", phone);
-		comm.setParam("lgselect", lgselect);
+		comm.setParam("lgselect", String.valueOf(lgselect));
 		comm.setParam("info", info);
 		comm.setParam("date", date);
 		comm.setParam("lati", Double.toString(lati));

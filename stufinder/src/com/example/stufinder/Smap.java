@@ -80,10 +80,10 @@ public class Smap extends FragmentActivity implements View.OnClickListener {
 	public void onClick(View v)
 	{
 		Intent sp = getIntent();
-		int selectp = (Integer)sp.getExtras().get("selectp");
+		int lgselect = (Integer)sp.getExtras().get("lgselect");
 		
 		Intent intent = new Intent(this, Reg.class);
-		intent.putExtra("selectp", selectp);
+		intent.putExtra("lgselect", lgselect);
 		System.out.println(lati);
 		intent.putExtra("lati", lati);
 		intent.putExtra("longi", longi);

@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.stufinder.util.StufinderUtil;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -16,6 +17,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -23,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -82,14 +85,28 @@ public class DmapFragmentLeftSlide extends ListFragment{
 //		public String info;
 		public Marker marker;
 		public String imageUrl;
+		public Boolean ismine;
+		public JSONObject jsonobj;
 		
-		public StuffItem(String title, String pos, String date, String lgselect, String imageUrl, Marker marker) {
-			this.title = title;
-			this.pos = pos;
-			this.date = date;
-			this.lgselect = lgselect;
-			this.marker = marker;
-			this.imageUrl = imageUrl;
+		public StuffItem(JSONObject jsonobj, Marker marker) {
+			try{
+				this.title = jsonobj.getString("title");
+				this.pos = jsonobj.getString("pos");
+				this.date = jsonobj.getString("date");
+				this.lgselect = jsonobj.getString("lgselect");
+				this.marker = marker;
+				this.imageUrl = jsonobj.getString("filepath");
+				
+				this.jsonobj = jsonobj;
+				
+				if(StufinderUtil.getAccount(getActivity()).equals(jsonobj.getString("gaccount"))) 
+					this.ismine = true;
+				else 
+					this.ismine = false;
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			
 		}
 	}
 
@@ -99,7 +116,7 @@ public class DmapFragmentLeftSlide extends ListFragment{
 			super(context, 0);
 		}
 
-		public View getView(int position, View convertView, ViewGroup parent) {
+		public View getView(final int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
 				convertView = LayoutInflater.from(getContext()).inflate(R.layout.piece_row_leftslide, null);
 			}
@@ -127,6 +144,32 @@ public class DmapFragmentLeftSlide extends ListFragment{
 			
 			ImageView image = (ImageView) convertView.findViewById(R.id.row_image);
 			UrlImageViewHelper.setUrlDrawable(image, getItem(position).imageUrl, R.drawable.noimage);
+			
+			//수정버튼 표시
+			final Button modifyBtn = (Button) convertView.findViewById(R.id.modify);
+			Log.e(getItem(position).title, getItem(position).ismine.toString());
+			if(getItem(position).ismine){
+				modifyBtn.setVisibility(View.VISIBLE);
+				modifyBtn.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Intent i = new Intent(getActivity(), Reg.class);
+						Iterator<String> iter = getItem(position).jsonobj.keys();
+						while(iter.hasNext()){
+							String key = iter.next();
+							try{
+								i.putExtra(key, getItem(position).jsonobj.getString(key));
+							}catch(Exception e){
+								e.printStackTrace();
+							}
+						}
+						i.putExtra("type", "modify");
+						
+						
+						startActivity(i);
+					}
+				});
+			}
 
 			return convertView;
 		}
@@ -142,18 +185,7 @@ public class DmapFragmentLeftSlide extends ListFragment{
 		while (iterator.hasNext()){
 			Map.Entry mapEntry = (Map.Entry) iterator.next();
 			JSONObject jsonobj = (JSONObject) mapEntry.getValue();
-			try {
-				adapter.add(new StuffItem(jsonobj.getString("title"), 
-						jsonobj.getString("pos"), 
-						jsonobj.getString("date"),
-						jsonobj.getString("lgselect"),
-//						jsonobj.getString("info"),
-						jsonobj.getString("filepath"),
-						(Marker) mapEntry.getKey()));
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				adapter.add(new StuffItem(jsonobj, (Marker) mapEntry.getKey()));
 		}
 		setListAdapter(adapter);
 	}

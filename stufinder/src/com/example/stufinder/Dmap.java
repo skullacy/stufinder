@@ -56,6 +56,13 @@ ActionBar.OnNavigationListener, SearchView.OnQueryTextListener {
 	public static final int STUFF_FILTER_GET = 3;
 	
 	@Override
+	public void onResume(){
+		super.onResume();
+		getStuffList();
+	}
+	
+	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		setTheme(R.style.Theme_Sherlock);
 	    super.onCreate(savedInstanceState);

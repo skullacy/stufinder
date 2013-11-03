@@ -1,6 +1,7 @@
 package com.example.stufinder;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Iterator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -74,10 +75,9 @@ public class DetailActivity extends Activity {
 	    
 	    ActionBar actionBar = getActionBar();
 	    actionBar.setDisplayShowCustomEnabled(true);
-	    actionBar.setCustomView(R.layout.actionbar_custom);
+	    View actbarView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
+	    actionBar.setCustomView(actbarView);
 	    actionBar.setDisplayShowHomeEnabled(false);
-	    
-	    
 	    
 	    final Intent intent = getIntent();
 	    
@@ -101,6 +101,48 @@ public class DetailActivity extends Activity {
 	    Log.e("stuff_srl(int)", String.valueOf(intent.getExtras().getInt("stuff_srl")));
 	    stuff_srl = intent.getExtras().getString("stuff_srl");
 	    gaccount = intent.getExtras().getString("gaccount");
+	    
+	    if(StufinderUtil.getAccount(this).equals(gaccount)){
+	    	Button modifyBtn = (Button) actbarView.findViewById(R.id.actbar_modify_btn);
+	    	Button deleteBtn = (Button) actbarView.findViewById(R.id.actbar_delete_btn);
+	    	
+	    	//modifyBtn.setVisibility(View.VISIBLE);
+	    	deleteBtn.setVisibility(View.VISIBLE);
+	    	
+	    	modifyBtn.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					Intent i = new Intent(DetailActivity.this, Reg.class);
+					i.putExtras(getIntent().getExtras());
+					i.putExtra("type", "modify");
+					i.putExtra("stuff_srl", stuff_srl);
+					startActivity(i);
+					finish();
+				}
+			});
+	    	
+		    deleteBtn.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					dialog = new ProgressDialog(DetailActivity.this);
+					dialog.setTitle("");
+					dialog.setMessage("서버에 등록중입니다.");
+					dialog.show();
+					Log.e("stuff_srl", stuff_srl);
+					CommServer comm = new CommServer();
+				    comm.setParam("act", "procStufinderDeleteData");
+				    comm.setParam("stuff_srl", stuff_srl);
+				    comm.setParam("gaccount", gaccount);
+				    new DeleteStuffTask().execute(comm);
+				}
+			});
+		    
+		    
+	    }
+	    
+	    
+	    
+	    
+	    
+	    
 	    
 	    
 	    TextView TV_pos = (TextView) findViewById(R.id.pos);
@@ -243,6 +285,35 @@ public class DetailActivity extends Activity {
 				StufinderUtil.setListViewHeight(replyList);
 				replyContent.setText(null);
 				setReplyCount(total_replycount + 1);
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	
+	private class DeleteStuffTask extends AsyncTask<CommServer, Void, String> {
+		protected String doInBackground(CommServer... comm) {
+			String data = null;
+			try {
+				data = comm[0].getData();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Log.e("2222", data);
+
+			return data;
+		} 
+
+		protected void onPostExecute(String result) {
+			dialog.dismiss();
+			JSONObject jsonobj;
+			try {
+				jsonobj = new JSONObject(result);
+				finish();
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
